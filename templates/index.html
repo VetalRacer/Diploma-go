@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/templates/css/bootstrap.css/">
+    <link rel="stylesheet" href="/templates/css/cover.css/">
+
+
+
+    <!-- loc css style -->
+    <link rel="stylesheet" href="css/bootstrap.css/">
+    <link rel="stylesheet" href="css/cover.css/">
+
+
+
+
+</head>
+
+<body class="d-flex h-100 text-center text-white bg-dark">
+
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="mb-auto">
+        <div>
+            <h3 class="float-md-start mb-0">NHL</h3>
+            <nav class="nav nav-masthead justify-content-center float-md-end">
+                <a class="nav-link active" aria-current="page" href="/update">Update</a>
+                <a class="nav-link" href="#">Presentation</a>
+                <a class="nav-link text-warning" href="/stresstest">Stresstest</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <div class="d-flex w-100 h-90 p-3 mx-auto flex-column mt-5">
+
+        <h1>NHL Statistic seasons </h1>
+        <br>
+        <form action="/" method="get">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <select class="form-control-sm" name="id" size="1" id="action-choice">
+                    <option selected value="null">Choose player...</option>
+                    {{range $k, $v := . }}
+                    <optgroup label={{ $k }}>
+                        {{range . }}
+                        <option value={{ .Id }}>{{ .Name }}</option>
+                        {{ end }}
+                    </optgroup>
+                    {{ end }}
+                </select>
+                <button type="submit" class="btn btn-outline-warning">Submit</button>
+            </div>
+        </form>
+
+
+
+        {{range $k, $v := . }}
+        {{range . }}
+        {{ if .Show}}<br>
+        <b class=" h3 ">{{ .Name }}</b>
+        <div class="row justify-content-center">
+            <div class="col-5 text-end ">
+                <t class="text-warning">TimeOnIce:</t> {{ .TimeOnIce }}<br>
+                <t class="text-warning">Assists:</t>  {{ .Assists }}<br>
+                <t class="text-warning">Goals:</t>  {{ .Goals }}<br>
+                <t class="text-warning">Shots:</t>  {{ .Shots }}<br>
+                <t class="text-warning">Hits:</t>  {{ .Hits }}<br>
+                <t class="text-warning">PowerPlayGoals:</t>  {{ .PowerPlayGoals }}<br>
+                <t class="text-warning">PowerPlayAssists:</t>  {{ .PowerPlayAssists }}<br>
+                <t class="text-warning">PowerPlayTimeonice:</t>  {{ .PowerPlayTimeonice }}<br>
+                <t class="text-warning">PenaltyMinutes:</t>  {{ .PenaltyMinutes }}<br>
+                <t class="text-warning">FaceOffPct:</t>  {{ .FaceOffPct }}<br>
+                <t class="text-warning">FaceOffWins:</t>  {{ .FaceOffWins }}<br>
+            </div>
+            <div class="col-5 text-start ">
+                {{ .FaceoffTaken }} <t class="text-warning">:FaceoffTaken</t><br>
+                {{ .Takeaways }} <t class="text-warning">:Takeaways</t><br>
+                {{ .Giveaways }} <t class="text-warning">:Giveaways</t><br>
+                {{ .ShortHandedGoals }} <t class="text-warning">:ShortHandedGoals</t><br>
+                {{ .ShortHandedAssists }} <t class="text-warning">:ShortHandedAssists</t><br>
+                {{ .Blocked }} <t class="text-warning">:Blocked</t><br>
+                {{ .PlusMinus }} <t class="text-warning">:PlusMinus</t><br>
+                {{ .EvenTimeOnIce }} <t class="text-warning">:EvenTimeOnIce</t><br>
+                {{ .PowerPlayTimeOnIce }} <t class="text-warning">:PowerPlayTimeOnIce</t><br>
+                {{ .ShortHandedTimeOnIce }} <t class="text-warning">:ShortHandedTimeOnIce</t>
+            </div>
+        </div>
+        {{ end }}
+        {{ end }}
+        {{ end }}
+    </div>
+
+
+
+    <footer class="mt-auto text-white-50">
+        <p>This site was created as a thesis by <a href="https://github.com/VetalRacer" class="text-white">Vitaly Brazhaev</a></p>
+    </footer>
+
+
+
+</div>
+
+
+
+
+
+
+
+<!----><div at-magnifier-wrapper=""><div class="at-theme-light"><div class="at-base notranslate" translate="no"><div class="Z1-AJ" style="top: 0px; left: 0px;"></div></div></div></div>
+</body>
+
+</html>
