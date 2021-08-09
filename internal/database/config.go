@@ -1,5 +1,5 @@
 package database
 
 const (
-	dbDSN = "postgres://{{user}}:{{password}}@localhost:5432/nhl"
+	dbDSN = "postgres://test:test@localhost:5432/nhl"
 )

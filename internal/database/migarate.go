@@ -2,26 +2,32 @@ package database
 
 import (
 	"context"
-	"github.com/jackc/pgx"
-	"github.com/jackc/tern/migrate"
 	"log"
+
+	"github.com/jackc/pgx"
+	"github.com/jackc/pgx/v4/pgxpool"
+	"github.com/jackc/tern/migrate"
 )
 
-func MigrateDatabase() {
-
-	conn, err := pgx.Connect(context.Background(), dbDSN)
+func Migrate() {
+	pool, err := pgxpool.Connect(context.Background(), dbDSN)
 	if err != nil {
 		log.Fatalf("Unable to connection to database: %v", err)
 	}
-	defer func(conn *pgx.Conn, ctx context.Context) {
-		err := conn.Close(ctx)
-		if err != nil {
-
-		}
-	}(conn, context.Background())
+	defer pool.Close()
 	log.Printf("Connected!")
 
-	migrator, err := migrate.NewMigrator(context.Background(), conn, "schema_version")
+	conn, err := pool.Acquire(context.Background())
+	if err != nil {
+		log.Fatalf("Unable to acquire a database connection: %v", err)
+	}
+	migrateDatabase(conn.Conn())
+	conn.Release()
+}
+
+func migrateDatabase(conn *pgx.Conn) {
+
+	migrator, err := migrate.NewMigrator(conn, "schema_version")
 	if err != nil {
 		log.Fatalf("Unable to create a migrator: %v\n", err)
 	}
