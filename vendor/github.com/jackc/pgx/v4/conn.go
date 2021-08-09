@@ -84,6 +84,22 @@ type Conn struct {
 	eqb              extendedQueryBuilder
 }
 
+func (c *Conn) Deadline() (deadline time.Time, ok bool) {
+	panic("implement me")
+}
+
+func (c *Conn) Done() <-chan struct{} {
+	panic("implement me")
+}
+
+func (c *Conn) Err() error {
+	panic("implement me")
+}
+
+func (c *Conn) Value(key interface{}) interface{} {
+	panic("implement me")
+}
+
 // Identifier a PostgreSQL identifier or name. Identifiers can be composed of
 // multiple parts such as ["schema", "table"] or ["table", "column"].
 type Identifier []string
