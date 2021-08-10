@@ -9,17 +9,17 @@ import (
 	"github.com/jackc/tern/migrate"
 )
 
-func Migrate() {
+func Connect() {
 	pool, err := pgxpool.Connect(context.Background(), dbDSN)
 	if err != nil {
-		log.Fatalf("Unable to connection to database: %v", err)
+		//log.Fatalf("Unable to connection to database: %v", err)
 	}
 	defer pool.Close()
 	log.Printf("Connected!")
 
 	conn, err := pool.Acquire(context.Background())
 	if err != nil {
-		log.Fatalf("Unable to acquire a database connection: %v", err)
+		//	log.Fatalf("Unable to acquire a database connection: %v", err)
 	}
 	migrateDatabase(conn.Conn())
 	conn.Release()
@@ -27,25 +27,29 @@ func Migrate() {
 
 func migrateDatabase(conn *pgx.Conn) {
 
-	migrator, err := migrate.NewMigrator(context.Background(), conn, "schema_version")
+	migrator, err := migrate.NewMigrator(conn, "schema_version")
 	if err != nil {
-		log.Fatalf("Unable to create a migrator: %v\n", err)
+		log.Fatalf("Unable to create a migrator: %v", err)
 	}
 
 	err = migrator.LoadMigrations("./migrations")
 	if err != nil {
-		log.Fatalf("Unable to load migrations: %v\n", err)
+		log.Fatalf("Unable to load migrations: %v", err)
 	}
 
-	err = migrator.Migrate(context.Background())
+	err = migrator.Migrate(func(err error) (retry bool) {
+		log.Infof("Commit failed during migration, retrying. Error: %v", err)
+		return true
+	})
+
 	if err != nil {
-		log.Fatalf("Unable to migrate: %v\n", err)
+		log.Fatalf("Unable to migrate: %v", err)
 	}
 
-	ver, err := migrator.GetCurrentVersion(context.Background())
+	ver, err := migrator.GetCurrentVersion()
 	if err != nil {
-		log.Fatalf("Unable to get current schema version: %v\n", err)
+		log.Fatalf("Unable to get current schema version: %v", err)
 	}
 
-	log.Printf("Migration done. Current schema version: %v\n", ver)
+	log.Infof("Migration done. Current schema version: %v", ver)
 }
