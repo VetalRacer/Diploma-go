@@ -5,28 +5,31 @@ import (
 	"Diploma-go/pkg"
 	"context"
 	"fmt"
-	"github.com/jackc/pgx"
+	"log"
+
+	"github.com/jackc/pgx/v4"
+	"github.com/jackc/pgx/v4/pgxpool"
 )
 
 func AddPlayers(players map[int]jsonconvert.Player) bool {
 
-	conn, err := pgx.Connect(context.Background(), dbDSN)
+	pool, err := pgxpool.Connect(context.Background(), dbDSN)
 	if err != nil {
-		fmt.Println("DB ERR:", err)
-		return false
+		log.Fatalf("Unable to connection to database: %v", err)
 	}
-	defer func(conn *pgx.Conn, ctx context.Context) {
-		err := conn.Close(ctx)
-		if err != nil {
+	defer pool.Close()
+	log.Printf("Connected!")
 
-		}
-	}(conn, context.Background())
+	conn, err := pool.Acquire(context.Background())
+	if err != nil {
+		log.Fatalf("Unable to acquire a database connection: %v", err)
+	}
 
 	//Drop all database strings
-	if cleanResults(conn) != nil {
+	if cleanResults(conn.Conn()) != nil {
 		fmt.Printf("Unable delete: %v", err)
 	}
-	if cleanPlayers(conn) != nil {
+	if cleanPlayers(conn.Conn()) != nil {
 		fmt.Printf("Unable delete: %v", err)
 	}
 
@@ -57,11 +60,12 @@ func AddPlayers(players map[int]jsonconvert.Player) bool {
 		, plusminus
 		, eventimeonice
 		, powerplaytimeonice
-		, shorthandedtimeonice) VALUES`+pkg.ConvertResults(chPlayers(conn), players))
+		, shorthandedtimeonice) VALUES`+pkg.ConvertResults(chPlayers(conn.Conn()), players))
 	if err != nil {
 		fmt.Printf("Unable to insert: %v", err)
 		return false
 	}
+	conn.Release()
 	return true
 }
 

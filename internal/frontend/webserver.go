@@ -14,7 +14,7 @@ var displayPlayers = database.GetPlayers()
 
 func HandleRequest() {
 
-	//	database.MigrateDatabase()
+	database.Migrate()
 
 	//css style
 	fs := http.FileServer(http.Dir("./templates/css"))
@@ -23,7 +23,7 @@ func HandleRequest() {
 	http.HandleFunc("/", indexPage)
 	http.HandleFunc("/update/", updateDb)
 	http.HandleFunc("/stresstest/", stressTest)
-	err := http.ListenAndServe(":8000", nil)
+	err := http.ListenAndServe(":80", nil)
 	if err != nil {
 		return
 	}

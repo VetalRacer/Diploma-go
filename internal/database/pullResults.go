@@ -3,23 +3,25 @@ package database
 import (
 	"context"
 	"fmt"
-	"github.com/jackc/pgx"
+	"log"
+
+	"github.com/jackc/pgx/v4/pgxpool"
 )
 
 func GetPlayers() (players map[string][]*Player) {
 	players = make(map[string][]*Player)
 
-	conn, err := pgx.Connect(context.Background(), dbDSN)
+	pool, err := pgxpool.Connect(context.Background(), dbDSN)
 	if err != nil {
-		fmt.Println("DB ERR:", err)
-		return
+		log.Fatalf("Unable to connection to database: %v", err)
 	}
-	defer func(conn *pgx.Conn, ctx context.Context) {
-		err := conn.Close(ctx)
-		if err != nil {
+	defer pool.Close()
+	log.Printf("Connected!")
 
-		}
-	}(conn, context.Background())
+	conn, err := pool.Acquire(context.Background())
+	if err != nil {
+		log.Fatalf("Unable to acquire a database connection: %v", err)
+	}
 
 	rows, _ := conn.Query(context.Background(),
 		`SELECT players.id
@@ -62,5 +64,6 @@ func GetPlayers() (players map[string][]*Player) {
 		}
 		players[season] = append(players[season], &p)
 	}
+	conn.Release()
 	return
 }

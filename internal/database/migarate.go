@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	"github.com/jackc/pgx"
+	"github.com/jackc/pgx/v4"
 	"github.com/jackc/pgx/v4/pgxpool"
 	"github.com/jackc/tern/migrate"
 )
@@ -27,7 +27,7 @@ func Migrate() {
 
 func migrateDatabase(conn *pgx.Conn) {
 
-	migrator, err := migrate.NewMigrator(conn, "schema_version")
+	migrator, err := migrate.NewMigrator(context.Background(), conn, "schema_version")
 	if err != nil {
 		log.Fatalf("Unable to create a migrator: %v\n", err)
 	}

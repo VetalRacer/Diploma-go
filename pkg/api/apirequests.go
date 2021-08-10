@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 )
@@ -11,7 +10,7 @@ import (
 func GetApiContent(url string) *http.Response {
 	res, err := http.Get(url)
 	if err != nil {
-		fmt.Println(nil, err)
+		log.Printf("error: %v", err)
 	}
 
 	if res.StatusCode != http.StatusOK {

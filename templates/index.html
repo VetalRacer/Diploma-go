@@ -43,7 +43,7 @@
         <form action="/" method="get">
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                 <select class="form-control-sm" name="id" size="1" id="action-choice">
-                    <option selected value="null">Choose player...</option>
+                    <option selected value="0">Choose player...</option>
                     {{range $k, $v := . }}
                     <optgroup label={{ $k }}>
                         {{range . }}
