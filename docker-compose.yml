@@ -5,12 +5,15 @@ services:
     build: ./
     command: /app/main
     ports:
-      - 8081:80
+      - 80:80
     depends_on:
       - db
 
   db:
     restart: always
     image: postgres:latest
+    environment:
+      - POSTGRES_DB=nhl
+      - POSTGRES_PASSWORD=s3cr3t      
     ports:
       - 5432:5432
