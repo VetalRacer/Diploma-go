@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  nhl_app:
+    build: ./
+    command: /app/main
+    ports:
+      - 8081:80
+    depends_on:
+      - db
+
+  db:
+    restart: always
+    image: postgres:latest
+    ports:
+      - 5432:5432
