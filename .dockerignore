@@ -2,3 +2,4 @@ Dockerfile*
 README*
 .git
 .idea
+.docker-compose.yml
