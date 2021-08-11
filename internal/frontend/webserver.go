@@ -14,7 +14,7 @@ var displayPlayers = database.GetPlayers()
 
 func HandleRequest() {
 
-	database.Migrate()
+	database.Connect()
 
 	//css style
 	fs := http.FileServer(http.Dir("./templates/css"))
