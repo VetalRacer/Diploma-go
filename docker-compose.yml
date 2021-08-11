@@ -6,6 +6,8 @@ services:
     command: /app/main
     ports:
       - 80:80
+    environment:
+      - DB_HOST=db
     depends_on:
       - db
 
