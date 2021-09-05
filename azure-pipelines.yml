@@ -16,12 +16,13 @@ stages:
 
 - stage: 'infrastucture'
   displayName: 'Provision Infrastucture'
-  branches:
-  - terraform
   #dependsOn: Build
   jobs:
   - job: Prepare_Infrastructure
     displayName: 'Prepare Azure Infrastructure'
+    branches:
+    include:
+    - terraform
     pool:
       vmImage: 'ubuntu-18.04'
     variables:
