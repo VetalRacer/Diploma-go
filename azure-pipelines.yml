@@ -35,10 +35,12 @@ stages:
         echo 'storage_account_name = "'$(StorageAccountName)'"' | tee -a backend.tfvars
         echo 'container_name = "tfstate"' | tee -a backend.tfvars
         echo 'key = "terraform.tfstate"' | tee -a backend.tfvars
+
+        ls -al
         # Initialize Terraform.
-        terraform init -input=false -backend-config="backend.tfvars"
+        cd terraform && terraform init -input=false -backend-config="backend.tfvars"
         # Apply the Terraform plan.
-        cd terraform && terraform apply -input=false -auto-approve
+        terraform apply -input=false -auto-approve
         # Get the App Service name for the dev environment.
         #WebAppNameDev=$(terraform output --raw appservice_name)
         # Write the WebAppNameDev variable to the pipeline.
