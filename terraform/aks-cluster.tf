@@ -21,8 +21,8 @@ resource "azurerm_kubernetes_cluster" "default" {
   }
 
   service_principal {
-    client_id     = "${var.arm_client_id}"
-    client_secret = "${var.arm_client_secret}"
+    client_id     = ${var.arm_client_id}
+    client_secret = ${var.arm_client_secret}
   }
 
   role_based_access_control {
