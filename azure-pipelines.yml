@@ -18,7 +18,7 @@ stages:
   displayName: 'Provision Infrastucture'
   #dependsOn: Build
   jobs:
-  - job: 'Prepare_Infrastructure'
+  - job: Prepare_Infrastructure
     displayName: 'Prepare Azure Infrastructure'
     pool:
       vmImage: 'ubuntu-18.04'
@@ -43,6 +43,7 @@ stages:
         #terraform destroy -input=false -auto-approve
 
   - job: Deploy_Infrastucture
+    dependsOn: Prepare_Infrastructure
     displayName: 'Deploy Azure Infrastructure'
     pool:
       vmImage: 'ubuntu-18.04'
