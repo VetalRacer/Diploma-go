@@ -1,8 +1,8 @@
 #Service Principle for AKS
 variable "service_principal_client_id" {
-  default = "__ARM_CLIENT_ID__"
+  default = "5df14d85-f3e9-4932-a4b2-93c80c15de47"
 }
 
 variable "service_principal_client_secret" {
-  default = "__ARM_CLIENT_SECRET__"
+  default = "KFQe0b0Vi6usAcNzat0cbu1~oy0ufeQnD7"
 }
