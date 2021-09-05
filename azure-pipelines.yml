@@ -28,8 +28,7 @@ stages:
     - script: |
         # Cd to terraform folder.
         cd terraform
-        env
-
+   
         # Exit when any command returns a failure status.
         set -e
         # Write terraform.tfvars.
@@ -54,5 +53,3 @@ stages:
         TF_VAR_arm_client_secret: $(ARM_CLIENT_SECRET)
         TF_VAR_arm_tenant_id: $(ARM_TENANT_ID)
         TF_VAR_arm_subscription_id: $(ARM_SUBSCRIPTION_ID)
-
-        ARM_CLIENT_ID: $(ARM_CLIENT_ID)
