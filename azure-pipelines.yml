@@ -1,19 +1,53 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
+  
 trigger:
-- terraform
+  branches:
+    include:
+    - Terraform
 
-pool:
-  vmImage: ubuntu-latest
+variables:
+  buildConfiguration: 'Release'
+#  ServiceConnnectionName: 'Tailspin.SpaceGame.Web.Full'
 
-steps:
-- script: echo Hello, world!
-#  displayName: 'Run a one-line script'
+stages:
+#- stage: 'Build'
+#  displayName: 'Build web application'
+#  jobs: 
+#  - job: 'Build Image'
+#    displayName: 'Build job image'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-#    echo See https://aka.ms/yaml
-#  displayName: 'Run a multi-line script'
+- stage: 'infrastucture'
+  displayName: 'Deploy Infrastucture'
+  #dependsOn: Build
+  jobs:
+  - job: Provision
+    displayName: 'Provision Azure Infrastructure'
+    pool:
+      vmImage: 'ubuntu-18.04'
+    variables:
+    - group: Infrastructure
+    steps:
+    - script: |
+        # Exit when any command returns a failure status.
+        set -e
+        # Write terraform.tfvars.
+        echo 'resource_group_location = "'$(ResourceGroupLocation)'"' | tee terraform.tfvars
+        # Write backend.tfvars.
+        echo 'resource_group_name = "tf-storage-rg"' | tee backend.tfvars
+        echo 'storage_account_name = "'$(StorageAccountName)'"' | tee -a backend.tfvars
+        echo 'container_name = "tfstate"' | tee -a backend.tfvars
+        echo 'key = "terraform.tfstate"' | tee -a backend.tfvars
+        # Initialize Terraform.
+        terraform init -input=false -backend-config="backend.tfvars"
+        # Apply the Terraform plan.
+        terraform apply -input=false -auto-approve
+        # Get the App Service name for the dev environment.
+        #WebAppNameDev=$(terraform output --raw appservice_name)
+        # Write the WebAppNameDev variable to the pipeline.
+        #echo "##vso[task.setvariable variable=WebAppNameDev;isOutput=true]$WebAppNameDev"
+      name: 'RunTerraform'
+      displayName: 'Run Terraform'
+      env:
+        ARM_CLIENT_ID: $(ARM_CLIENT_ID)
+        ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+        ARM_TENANT_ID: $(ARM_TENANT_ID)
+        ARM_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
