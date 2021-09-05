@@ -1,8 +1,3 @@
-resource "azurerm_resource_group" "example" {
-  name     = "Diploma-rg"
-  location = "westeurope"
-}
-
 resource "azurerm_postgresql_server" "default" {
   name                = "diploma-psqlserver"
   location            = azurerm_resource_group.default.location

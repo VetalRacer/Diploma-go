@@ -1,23 +1,10 @@
-#trigger:
-#  branches:
-#    include:
-#    - terraform
-
 variables:
   buildConfiguration: 'Release'
-#  ServiceConnnectionName: 'Tailspin.SpaceGame.Web.Full'
 
 stages:
-#- stage: 'Build'
-#  displayName: 'Build web application'
-#  jobs: 
-#  - job: 'Build Image'
-#    displayName: 'Build job image'
-
 - stage: 'infrastucture'
   displayName: 'Provision Infrastucture'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/terraform'))
-  #dependsOn: Build
   jobs:
   - job: Prepare_Infrastructure
     displayName: 'Prepare Azure Infrastructure'
@@ -85,3 +72,31 @@ stages:
         TF_VAR_arm_client_secret: $(ARM_CLIENT_SECRET)
         TF_VAR_arm_tenant_id: $(ARM_TENANT_ID)
         TF_VAR_arm_subscription_id: $(ARM_SUBSCRIPTION_ID)
+      
+- stage: 'Build'
+  displayName: 'Build web application'
+  condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/develop')))
+  jobs: 
+  - job: 'Build Image'
+    displayName: 'Build job image'
+    steps:
+    - task: Docker@2
+      displayName: Login to ACR
+      inputs:
+        command: login
+        containerRegistry: dockerRegistryServiceConnection1
+    - task: Docker@2
+      displayName: Login to Docker Hub
+      inputs:
+        command: login
+        containerRegistry: dockerRegistryServiceConnection2
+    - task: Docker@2
+      displayName: Build and Push
+      inputs:
+        command: buildAndPush
+        repository: contosoRepository
+        tags: |
+          tag1
+          tag2
+
+    
