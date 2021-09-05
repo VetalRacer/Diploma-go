@@ -27,10 +27,10 @@ stages:
     - group: Infrastructure
     steps:
     - task: Bash@3
-        displayName: "set commitMessage variable"
-        inputs:
-          targetType: inline
-          script: echo '##vso[task.setvariable variable=commitMessage]$(Build.SourceVersionMessage)'
+      displayName: "set commitMessage variable"
+      inputs:
+        targetType: inline
+        script: echo '##vso[task.setvariable variable=commitMessage]$(Build.SourceVersionMessage)'
     - script: |
         # Cd to terraform folder.
         cd terraform/storage
