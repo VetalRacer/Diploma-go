@@ -26,6 +26,9 @@ stages:
     - group: Infrastructure
     steps:
     - script: |
+        # Cd to terraform folder.
+        cd terraform
+
         # Exit when any command returns a failure status.
         set -e
         # Write terraform.tfvars.
@@ -35,8 +38,6 @@ stages:
         echo 'storage_account_name = "'$(StorageAccountName)'"' | tee -a backend.tfvars
         echo 'container_name = "tfstate"' | tee -a backend.tfvars
         echo 'key = "terraform.tfstate"' | tee -a backend.tfvars
-        # Cd to terraform folder.
-        cd terraform
         # Initialize Terraform.
         terraform init -input=false -backend-config="backend.tfvars"
         # Apply the Terraform plan.
