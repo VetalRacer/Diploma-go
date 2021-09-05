@@ -41,8 +41,6 @@ stages:
         echo 'key = "terraform.tfstate"' | tee -a backend.tfvars
         # Initialize Terraform.
         terraform init -input=false -backend-config="backend.tfvars"
-        terraform plan
-        cat backend.tfvars
         # Apply the Terraform plan.
         terraform apply -input=false -auto-approve
         # Get the App Service name for the dev environment.
@@ -52,7 +50,7 @@ stages:
       name: 'RunTerraform'
       displayName: 'Run Terraform'
       env:
-        TF_VAR_ARM_CLIENT_ID: $(ARM_CLIENT_ID)
-        TF_VAR_ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
-        TF_VAR_ARM_TENANT_ID: $(ARM_TENANT_ID)
-        TF_VAR_ARM_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
+        ARM_CLIENT_ID: $(ARM_CLIENT_ID)
+        ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+        ARM_TENANT_ID: $(ARM_TENANT_ID)
+        ARM_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)

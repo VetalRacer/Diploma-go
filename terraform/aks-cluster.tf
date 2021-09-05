@@ -33,7 +33,7 @@ resource "azurerm_kubernetes_cluster" "default" {
     environment = "Diploma"
   }
 
-  provisioner "local-exec" {
-    command="az aks get-credentials -g ${azurerm_resource_group.default.name} -n Diploma-aks --overwrite-existing"
-  }
+  #provisioner "local-exec" {
+  #  command="az aks get-credentials -g ${azurerm_resource_group.default.name} -n Diploma-aks --overwrite-existing"
+  #}
 }
