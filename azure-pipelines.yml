@@ -15,9 +15,9 @@ stages:
 #    displayName: 'Build job image'
 
 - stage: 'infrastucture'
+  displayName: 'Provision Infrastucture'
   branches:
   - terraform
-  displayName: 'Provision Infrastucture'
   #dependsOn: Build
   jobs:
   - job: Prepare_Infrastructure
