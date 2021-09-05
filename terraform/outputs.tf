@@ -11,6 +11,10 @@ output "registry_password" {
   value = azurerm_container_registry.default.admin_password
 }
 
+output "registry_login" {
+  value = azurerm_container_registry.default.admin_login
+}
+
 # output "host" {
 #   value = azurerm_kubernetes_cluster.default.kube_config.0.host
 # }
