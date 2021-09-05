@@ -37,4 +37,11 @@ resource "azurerm_kubernetes_cluster" "default" {
     command="az aks get-credentials -g ${azurerm_resource_group.default.name} -n Diploma-aks --overwrite-existing"
   }
 
+  lifecycle {
+    ignore_changes = [
+      service_principal,
+      # addon_profile,
+    ]
+  }
+
 }
