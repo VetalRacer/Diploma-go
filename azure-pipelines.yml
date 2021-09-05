@@ -28,6 +28,7 @@ stages:
     - script: |
         # Cd to terraform folder.
         cd terraform
+        env
 
         # Exit when any command returns a failure status.
         set -e
