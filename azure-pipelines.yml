@@ -1,8 +1,7 @@
-  
 trigger:
   branches:
     include:
-    - Terraform
+    - terraform
 
 variables:
   buildConfiguration: 'Release'
