@@ -38,7 +38,7 @@ stages:
         # Initialize Terraform.
         terraform init -input=false -backend-config="backend.tfvars"
         # Apply the Terraform plan.
-        terraform apply /terraform -input=false -auto-approve
+        cd terraform && terraform apply -input=false -auto-approve
         # Get the App Service name for the dev environment.
         #WebAppNameDev=$(terraform output --raw appservice_name)
         # Write the WebAppNameDev variable to the pipeline.
