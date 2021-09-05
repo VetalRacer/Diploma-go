@@ -16,13 +16,11 @@ stages:
 
 - stage: 'infrastucture'
   displayName: 'Provision Infrastucture'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/terraform'))
   #dependsOn: Build
   jobs:
   - job: Prepare_Infrastructure
     displayName: 'Prepare Azure Infrastructure'
-    branches:
-    include:
-    - terraform
     pool:
       vmImage: 'ubuntu-18.04'
     variables:
