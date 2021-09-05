@@ -7,7 +7,7 @@ output "kubernetes_cluster_name" {
 }
 
 output "registry_password" {
-  value = azurerm_container_registry.default.password
+  value = azurerm_container_registry.default.admin_password
 }
 
 # output "host" {
