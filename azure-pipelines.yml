@@ -27,7 +27,9 @@ stages:
     variables:
     - group: Infrastructure
     steps:
-    - script: |
+    - script: 
+      condition: and(succeeded(), eq(variables['Build.SourceVersionMessage  '], 'deployfirst1')) 
+      |
         # Cd to terraform folder.
         cd terraform/storage
 
