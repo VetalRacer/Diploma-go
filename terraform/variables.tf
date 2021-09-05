@@ -1,4 +1,4 @@
-Service Principle for AKS
+#Service Principle for AKS
 variable "service_principal_client_id" {
   default = "__ARM_CLIENT_ID__"
 }
