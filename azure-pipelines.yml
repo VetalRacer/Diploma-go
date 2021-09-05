@@ -21,6 +21,7 @@ stages:
   jobs:
   - job: Prepare_Infrastructure
     displayName: 'Prepare Azure Infrastructure'
+    condition: and(succeeded(), eq(variables['Build.SourceVersionMessage  '], 'deployfirst'))
     pool:
       vmImage: 'ubuntu-18.04'
     variables:
