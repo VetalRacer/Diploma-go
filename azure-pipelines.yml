@@ -21,14 +21,12 @@ stages:
   jobs:
   - job: Prepare_Infrastructure
     displayName: 'Prepare Azure Infrastructure'
-    condition: and(succeeded(), eq(variables['Build.SourceVersionMessage  '], 'deployfirst1'))
     pool:
       vmImage: 'ubuntu-18.04'
     variables:
     - group: Infrastructure
     steps:
-    - script: 
-      condition: and(succeeded(), eq(variables['Build.SourceVersionMessage  '], 'deployfirst1')) |
+    - script: |
         # Cd to terraform folder.
         cd terraform/storage
 
@@ -44,6 +42,7 @@ stages:
         # Destroy the Terraform plan.
         
         #terraform destroy -input=false -auto-approve
+      condition: and(succeeded(), eq(variables['Build.SourceVersionMessage  '], 'deployfirst'))
 
   - job: Deploy_Infrastucture
     dependsOn: Prepare_Infrastructure
