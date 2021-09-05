@@ -7,7 +7,7 @@ output "kubernetes_cluster_name" {
 }
 
 output "registry_password" {
-  sensitive = true
+  sensitive = false
   value = azurerm_container_registry.default.admin_password
 }
 
