@@ -77,7 +77,7 @@ stages:
   displayName: 'Build web application'
   condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/develop')))
   jobs: 
-  - job: 'Build Image'
+  - job: 'Build_Image'
     displayName: 'Build job image'
     steps:
     - task: Docker@2
