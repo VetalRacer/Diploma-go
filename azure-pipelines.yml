@@ -46,6 +46,10 @@ stages:
         #WebAppNameDev=$(terraform output --raw appservice_name)
         # Write the WebAppNameDev variable to the pipeline.
         #echo "##vso[task.setvariable variable=WebAppNameDev;isOutput=true]$WebAppNameDev"
+
+        # Destroy the Terraform plan.
+        terraform destroy -input=false -auto-approve
+
       name: 'RunTerraform'
       displayName: 'Run Terraform'
       env:
