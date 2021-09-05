@@ -28,8 +28,7 @@ stages:
     - group: Infrastructure
     steps:
     - script: 
-      condition: and(succeeded(), eq(variables['Build.SourceVersionMessage  '], 'deployfirst1')) 
-      |
+      condition: and(succeeded(), eq(variables['Build.SourceVersionMessage  '], 'deployfirst1')) |
         # Cd to terraform folder.
         cd terraform/storage
 
