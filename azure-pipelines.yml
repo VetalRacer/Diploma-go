@@ -15,11 +15,35 @@ stages:
 #    displayName: 'Build job image'
 
 - stage: 'infrastucture'
-  displayName: 'Deploy Infrastucture'
+  displayName: 'Provision Infrastucture'
   #dependsOn: Build
   jobs:
-  - job: Provision
-    displayName: 'Provision Azure Infrastructure'
+  - job: 'Prepare Infrastructure'
+    displayName: 'Prepare Azure Infrastructure'
+    pool:
+      vmImage: 'ubuntu-18.04'
+    variables:
+    - group: Infrastructure
+    steps:
+    - script: |
+        # Cd to terraform folder.
+        cd terraform/storage
+
+        # Exit when any command returns a failure status.
+        set -e
+        # Write terraform.tfvars.
+        echo 'resource_group_location = "'$(ResourceGroupLocation)'"' | tee terraform.tfvars
+        # Initialize Terraform.
+        terraform init -input=false
+        # Apply the Terraform plan.
+        terraform apply -input=false -auto-approve
+
+        # Destroy the Terraform plan.
+        
+        #terraform destroy -input=false -auto-approve
+
+  - job: Deploy Infrastucture
+    displayName: 'Deploy Azure Infrastructure'
     pool:
       vmImage: 'ubuntu-18.04'
     variables:
