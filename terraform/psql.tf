@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "example" {
   name     = "Diploma-rg"
-  location = "West US 2"
+  location = "westeurope"
 }
 
 resource "azurerm_postgresql_server" "default" {

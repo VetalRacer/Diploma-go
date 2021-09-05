@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "default" {
   name     = "Diploma-rg"
-  location = "West US 2"
+  location = "westeurope"
 
   tags = {
     environment = "Diploma"
@@ -36,12 +36,4 @@ resource "azurerm_kubernetes_cluster" "default" {
   provisioner "local-exec" {
     command="az aks get-credentials -g ${azurerm_resource_group.default.name} -n Diploma-aks --overwrite-existing"
   }
-
-  lifecycle {
-    ignore_changes = [
-      service_principal,
-      # addon_profile,
-    ]
-  }
-
 }
