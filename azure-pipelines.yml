@@ -5,7 +5,7 @@ variables:
 - name: registryUsername
   value: diplomaContainerRegistry
 - name: imageName
-  value: diplomaContainerRegistry.azure.io/nhl
+  value: diplomacontainerregistry.azurecr.io/nhl
 
 stages:
 - stage: 'infrastucture'
