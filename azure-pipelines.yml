@@ -93,7 +93,7 @@ stages:
       vmImage: 'ubuntu-18.04'
     steps:
     - task: Docker@2
-      displayName: Login to ACR
+      displayName: Login to ACR1
       inputs:
         command: login
         containerRegistry: diplomacontainerregistry.azurecr.io
