@@ -63,7 +63,7 @@ stages:
         terraform apply -input=false -auto-approve
 
         # Destroy the Terraform plan.
-        terraform destroy -input=false -auto-approve
+        #terraform destroy -input=false -auto-approve
 
 
         login = $(azurerm_container_registry.default.admin_username)
@@ -90,7 +90,7 @@ stages:
     steps:
     - script: |
         echo $login
-        
+
 #    steps:
 #    - task: Docker@2
 #      displayName: Login to ACR
