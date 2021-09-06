@@ -5,7 +5,7 @@ variables:
 - name: registryUsername
   value: diplomaContainerRegistry
 - name: imageName
-  value: nhl
+  value: diplomaContainerRegistry.azure.io/nhl
 
 stages:
 - stage: 'infrastucture'
@@ -105,7 +105,7 @@ stages:
     - task: Docker@2
       displayName: Build and Push
       inputs:
-        command: build #AndPush
+        command: buildAndPush
         repository: $(imageName)
         dockerfile: Dockerfile
         tags: |
