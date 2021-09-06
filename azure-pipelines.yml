@@ -81,7 +81,7 @@ stages:
   displayName: 'Build web application'
   condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/terraform'), eq(variables['Build.SourceBranch'], 'refs/heads/develop')))
   variables:
-      username: $[ dependencies.Provision.outputs['RunTerraform.username'] ]
+      username1: $[ dependencies.Provision.outputs['RunTerraform.username'] ]
   jobs: 
   - job: Build_Image
     displayName: 'Build job image'
@@ -90,6 +90,8 @@ stages:
     steps:
     - script: |
         echo $username
+      env:
+        username: username1
 
 #    steps:
 #    - task: Docker@2
