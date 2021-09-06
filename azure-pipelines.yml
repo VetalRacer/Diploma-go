@@ -40,8 +40,7 @@ stages:
         terraform apply -input=false -auto-approve
 
         # Destroy the Terraform plan.
-        
-        #terraform destroy -input=false -auto-approve
+        terraform destroy -input=false -auto-approve
       condition: and(succeeded(), eq(variables.commitMessage, 'deployfirst'))
 
   - job: Deploy_Infrastucture
