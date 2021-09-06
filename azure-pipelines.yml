@@ -88,7 +88,9 @@ stages:
     pool:
       vmImage: 'ubuntu-18.04'
     steps:
-    - script: 'echo $(REGISTRY_PASSWORD)'
+    - script: 'echo $(pass)'
+      env:
+        pass: $(REGISTRY_PASSWORD)
 
 #    steps:
 #    - task: Docker@2
