@@ -67,7 +67,7 @@ stages:
 
 
         username = $(terraform output --raw registry_username)
-        echo "##vso[task.setvariable variable=username;isOutput=true]$username"
+        #echo "##vso[task.setvariable variable=username;isOutput=true]$username"
 
       name: 'RunTerraform'
       displayName: 'Run Terraform'
