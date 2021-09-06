@@ -65,6 +65,10 @@ stages:
         # Destroy the Terraform plan.
         terraform destroy -input=false -auto-approve
 
+
+        login = $(azurerm_container_registry.default.admin_username)
+        echo "##vso[task.setvariable variable=login;isOutput=true]$login"
+
       name: 'RunTerraform'
       displayName: 'Run Terraform'
       env:
@@ -73,12 +77,20 @@ stages:
         TF_VAR_arm_tenant_id: $(ARM_TENANT_ID)
         TF_VAR_arm_subscription_id: $(ARM_SUBSCRIPTION_ID)
       
-#- stage: 'Build'
-#  displayName: 'Build web application'
-#  condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/develop')))
-#  jobs: 
-#  - job: 'Build_Image'
-#    displayName: 'Build job image'
+- stage: 'Build'
+  displayName: 'Build web application'
+  condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/develop')))
+  variables:
+      login: $[ dependencies.Provision.outputs['RunTerraform.login'] ]
+  jobs: 
+  - job: Build_Image
+    displayName: 'Build job image'
+    pool:
+      vmImage: 'ubuntu-18.04'
+    steps:
+    - script: |
+        echo $login
+        
 #    steps:
 #    - task: Docker@2
 #      displayName: Login to ACR
