@@ -66,7 +66,7 @@ stages:
         #terraform destroy -input=false -auto-approve
 
 
-        username=$(terraform output --raw azurerm_container_registry.default.admin_username)
+        username=$(terraform output --raw registry_username)
         echo "##vso[task.setvariable variable=username;isOutput=true]$username"
 
       name: 'RunTerraform'
@@ -79,7 +79,7 @@ stages:
       
 - stage: 'Build'
   displayName: 'Build web application'
-  condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/develop')))
+  condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/terraform'), eq(variables['Build.SourceBranch'], 'refs/heads/develop')))
   variables:
       username: $[ dependencies.Provision.outputs['RunTerraform.username'] ]
   jobs: 
