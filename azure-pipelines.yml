@@ -6,6 +6,8 @@ variables:
   value: diplomaContainerRegistry
 - name: imageName
   value: diplomacontainerregistry.azurecr.io/nhl
+- name: azureContainerRegistry
+  value: diplomacontainerregistry.azurecr.io
 
 stages:
 - stage: 'infrastucture'
@@ -92,11 +94,18 @@ stages:
     pool:
       vmImage: 'ubuntu-18.04'
     steps:
+    #- task: Docker@2
+    #  displayName: Login to ACR
+    #  inputs:
+    #    command: login
+    #    containerRegistry: diplomacontainerregistry.azurecr.io
     - task: Docker@2
-      displayName: Login to ACR1
+      displayName: Container registry login
       inputs:
-        command: login
-        containerRegistry: diplomacontainerregistry.azurecr.io
+        containerregistrytype: Azure Container Registry
+        azureSubscriptionEndpoint: $(ARM_SUBSCRIPTION_ID)
+        azureContainerRegistry: $(azureContainerRegistry)
+
     #- task: Docker@2
     #  displayName: Login to Docker Hub
     #  inputs:
