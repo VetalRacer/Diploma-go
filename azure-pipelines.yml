@@ -1,5 +1,7 @@
 variables:
   buildConfiguration: 'Release'
+  registryUsername: diplomaContainerRegistry
+  registryPassword: $(REGISTRY_PASSWORD)
 
 stages:
 - stage: 'infrastucture'
@@ -80,19 +82,13 @@ stages:
 - stage: 'Build'
   displayName: 'Build web application'
   condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/terraform'), eq(variables['Build.SourceBranch'], 'refs/heads/develop')))
-  variables:
-      registryUsername: diplomaContainerRegistry
-      registryPassword: $(REGISTRY_PASSWORD)
   jobs: 
   - job: Build_Image
     displayName: 'Build job image'
     pool:
       vmImage: 'ubuntu-18.04'
     steps:
-    - script: 'echo $(username)'
-      env:
-        username: registry_username
-        password: registryPassword
+    - script: 'echo $(registryUsername)'
 
 #    steps:
 #    - task: Docker@2
