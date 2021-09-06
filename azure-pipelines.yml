@@ -88,8 +88,7 @@ stages:
     pool:
       vmImage: 'ubuntu-18.04'
     steps:
-    - script: |
-        echo $username
+    - script: 'echo $(username)'
       env:
         username: username1
 
