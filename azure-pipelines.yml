@@ -92,11 +92,11 @@ stages:
     pool:
       vmImage: 'ubuntu-18.04'
     steps:
-    #- task: Docker@2
-    #  displayName: Login to ACR
-    #  inputs:
-    #    command: login
-    #    containerRegistry: dockerRegistryServiceConnection1
+    - task: Docker@2
+      displayName: Login to ACR
+      inputs:
+        command: login
+        containerRegistry: diplomacontainerregistry.azurecr.io
     #- task: Docker@2
     #  displayName: Login to Docker Hub
     #  inputs:
