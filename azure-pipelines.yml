@@ -66,22 +66,23 @@ stages:
         #terraform destroy -input=false -auto-approve
 
 
-        username=$(terraform output --raw registry_username)
-        echo "##vso[task.setvariable variable=username;isOutput=true]$username"
+        #username=$(terraform output --raw registry_username)
+        #echo "##vso[task.setvariable variable=username;isOutput=true]$username"
 
       name: 'RunTerraform'
       displayName: 'Run Terraform'
       env:
         TF_VAR_arm_client_id: $(ARM_CLIENT_ID)
         TF_VAR_arm_client_secret: $(ARM_CLIENT_SECRET)
-        TF_VAR_arm_tenant_id: $(ARM_TENANT_ID)
-        TF_VAR_arm_subscription_id: $(ARM_SUBSCRIPTION_ID)
+        #TF_VAR_arm_tenant_id: $(ARM_TENANT_ID)
+        #TF_VAR_arm_subscription_id: $(ARM_SUBSCRIPTION_ID)
       
 - stage: 'Build'
   displayName: 'Build web application'
   condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/terraform'), eq(variables['Build.SourceBranch'], 'refs/heads/develop')))
   variables:
-      username1: $[ dependencies.Provision.outputs['RunTerraform.username'] ]
+      registryUsername: diplomaContainerRegistry
+      registryPassword: $(REGISTRY_PASSWORD)
   jobs: 
   - job: Build_Image
     displayName: 'Build job image'
@@ -90,7 +91,8 @@ stages:
     steps:
     - script: 'echo $(username)'
       env:
-        username: username1
+        username: registry_username
+        password: registryPassword
 
 #    steps:
 #    - task: Docker@2
