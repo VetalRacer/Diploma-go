@@ -90,7 +90,7 @@ stages:
     pool:
       vmImage: 'ubuntu-18.04'
     steps:
-    - script: 'echo $(pass)'
+    - script: env
       env:
         pass: $(REGISTRY_PASSWORD)
 
