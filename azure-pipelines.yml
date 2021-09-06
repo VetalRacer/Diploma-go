@@ -1,4 +1,5 @@
 variables:
+  group: Infrastructure
   buildConfiguration: 'Release'
   registryUsername: diplomaContainerRegistry
   registryPassword: $(REGISTRY_PASSWORD)
@@ -43,8 +44,8 @@ stages:
     displayName: 'Deploy Azure Infrastructure'
     pool:
       vmImage: 'ubuntu-18.04'
-    variables:
-    - group: Infrastructure
+    #variables:
+    
     steps:
     - script: |
         # Cd to terraform folder.
