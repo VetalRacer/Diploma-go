@@ -84,7 +84,7 @@ stages:
         TF_VAR_arm_subscription_id: $(ARM_SUBSCRIPTION_ID)
       
 - stage: 'Build'
-  displayName: 'Build web application'
+  displayName: 'Build application'
   condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/terraform'), eq(variables['Build.SourceBranch'], 'refs/heads/develop')))
   jobs: 
   - job: Build_Image
@@ -105,7 +105,7 @@ stages:
     - task: Docker@2
       displayName: Build and Push
       inputs:
-        command: buildAndPush
+        command: build #AndPush
         repository: $(imageName)
         dockerfile: Dockerfile
         tags: |
