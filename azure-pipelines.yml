@@ -41,7 +41,7 @@ stages:
 
         # Destroy the Terraform plan.
         terraform destroy -input=false -auto-approve
-      condition: and(succeeded(), eq(variables.commitMessage, 'deployfirst'))
+      condition: and(succeeded(), eq(variables.commitMessage, 'firstdeploy'))
 
   - job: Deploy_Infrastucture
     dependsOn: Prepare_Infrastructure
