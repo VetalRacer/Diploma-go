@@ -111,14 +111,14 @@ stages:
     #  inputs:
     #    command: login
     #    containerRegistry: dockerRegistryServiceConnection2
-    - task: Docker@2
-      displayName: Build and Push
-      inputs:
-        command: buildAndPush
-        repository: $(imageName)
-        dockerfile: Dockerfile
-        tags: |
-          tag1
-          tag2
+    #- task: Docker@2
+    #  displayName: Build and Push
+    #  inputs:
+    #    command: buildAndPush
+    #    repository: $(imageName)
+    #    dockerfile: Dockerfile
+    #    tags: |
+    #      tag1
+    #      tag2
 
     
