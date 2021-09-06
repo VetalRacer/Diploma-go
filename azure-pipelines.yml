@@ -1,8 +1,9 @@
 variables:
 - group: Infrastructure
-  #buildConfiguration: 'Release'
-  #registryUsername: diplomaContainerRegistry
-  #registryPassword: $(REGISTRY_PASSWORD)
+- name: buildConfiguration 
+  value: 'Release'
+- name: registryUsername
+  value: diplomaContainerRegistry
 
 stages:
 - stage: 'infrastucture'
