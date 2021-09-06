@@ -100,11 +100,16 @@ stages:
     #    command: login
     #    containerRegistry: diplomacontainerregistry.azurecr.io
     - task: Docker@2
-      displayName: Container registry login
+      displayName: Build and Push
       inputs:
+        command: buildAndPush
+        repository: $(imageName)
         containerregistrytype: Azure Container Registry
         azureSubscriptionEndpoint: $(ARM_SUBSCRIPTION_ID)
         azureContainerRegistry: $(azureContainerRegistry)
+        tags: |
+          tag1
+          tag2
 
     #- task: Docker@2
     #  displayName: Login to Docker Hub
