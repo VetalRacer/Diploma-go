@@ -6,8 +6,6 @@ metadata:
   labels:
     app: {{ .Values.name }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
 spec:
   ports:
     - name: {{ .Values.name }}
