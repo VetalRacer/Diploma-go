@@ -100,7 +100,7 @@ stages:
         tags: |
           latest
 
-- stage: 'Deploy App'
+- stage: 'Deploy_App'
   displayName: 'Deploy App'
   jobs:
     - job: Deploy_to_Dev
