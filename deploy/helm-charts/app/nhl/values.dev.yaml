@@ -5,11 +5,11 @@ replicas: 1
 port: 80
 
 image:
-  repository: diplomacontainerregistry.azurecr.io/nhl
+  repository: diplomacontainerregistry.azurecr.io/diplomacontainerregistry.azurecr.io/nhl
   tag: latest
   pullPolicy: Always
   imagePullSecret: artifactory
-  
+
 resources:
   limits:
     cpu: 1000m
