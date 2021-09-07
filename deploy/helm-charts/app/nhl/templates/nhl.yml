@@ -26,6 +26,8 @@ spec:
             - containerPort: {{.Values.port}}
               protocol: TCP
       restartPolicy: Always
+      imagePullSecrets:
+        - name: {{.Values.image.imagePullSecret}}
   selector:
     matchLabels:
       app: {{.Values.name}}
