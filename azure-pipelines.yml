@@ -118,5 +118,6 @@ stages:
             chartPath: deploy/helm-charts/app/nhl
             valueFile: deploy/helm-charts/app/nhl/values.dev.yaml
             #releaseName: azuredevopsdemo
+            namespace: develop
             install: true
             waitForExecution: false
