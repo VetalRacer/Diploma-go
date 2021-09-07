@@ -110,6 +110,7 @@ stages:
         - task: HelmDeploy@0
           displayName: Helm upgrade
           inputs:
+            connectionType: 'Azure Resource Manager'
             azureSubscriptionEndpoint: diplomaSP
             azureResourceGroup: Diploma-rg
             kubernetesCluster: Diploma-aks
