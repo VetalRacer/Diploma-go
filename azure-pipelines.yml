@@ -99,5 +99,8 @@ stages:
         dockerfile: Dockerfile
         tags: |
           latest
-          #tag2
+
+#- stage: 'Deploy to Dev'
+#  displayName: 'Deploy to Dev'
+#  jobs: 
     
