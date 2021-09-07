@@ -100,7 +100,20 @@ stages:
         tags: |
           latest
 
-#- stage: 'Deploy to Dev'
-#  displayName: 'Deploy to Dev'
-#  jobs: 
-    
+- stage: 'Deploy to Dev'
+  displayName: 'Deploy to Dev'
+  condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/terraform'), eq(variables['Build.SourceBranch'], 'refs/heads/develop')))
+  jobs: 
+    - task: HelmDeploy@0
+      displayName: Helm upgrade
+      inputs:
+        azureSubscriptionEndpoint: $(ARM_SUBSCRIPTION_ID)
+        azureResourceGroup: Diploma-rg
+        kubernetesCluster: Diploma-aks
+        command: upgrade
+        chartType: filepath
+        chartPath: deploy/helm-charts/app/nhl
+        valueFile: deploy/helm-charts/app/nhl/values.dev.yaml
+        #releaseName: azuredevopsdemo
+        install: true
+        waitForExecution: false
