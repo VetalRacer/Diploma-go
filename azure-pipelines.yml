@@ -110,7 +110,7 @@ stages:
         - task: HelmDeploy@0
           displayName: Helm upgrade
           inputs:
-            azureSubscriptionEndpoint: $(ARM_SUBSCRIPTION_ID)
+            azureSubscriptionEndpoint: diplomaSP
             azureResourceGroup: Diploma-rg
             kubernetesCluster: Diploma-aks
             command: upgrade
