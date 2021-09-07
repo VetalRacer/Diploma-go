@@ -8,7 +8,7 @@ image:
   repository: diplomacontainerregistry.azurecr.io/nhl
   tag: latest
   pullPolicy: Always
-  imagePullSecret: artifactory
+
   
 resources:
   limits:
