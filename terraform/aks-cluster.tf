@@ -31,9 +31,55 @@ resource "azurerm_kubernetes_cluster" "default" {
 
   tags = {
     environment = "Diploma"
-  }
+  }  
+}
 
-  #provisioner "local-exec" {
-  #  command="az aks get-credentials -g ${azurerm_resource_group.default.name} -n Diploma-aks --overwrite-existing"
-  #}
+resource "kubernetes_namespace" "prod-env" {
+  metadata {
+    annotations = {
+      name = "prod-env"
+    }
+
+    name = "production"
+  }
+}
+
+resource "kubernetes_namespace" "dev-env" {
+  metadata {
+    annotations = {
+      name = "dev-env"
+    }
+
+    name = "develop"
+  }
+}
+
+resource "kubernetes_namespace" "logging-env" {
+  metadata {
+    annotations = {
+      name = "logging-env"
+    }
+
+    name = "logging"
+  }
+}
+
+resource "kubernetes_namespace" "dev-monitoring" {
+  metadata {
+    annotations = {
+      name = "dev-monitoring"
+    }
+
+    name = "monitoring"
+  }
+}
+
+resource "kubernetes_namespace" "qgate-env" {
+  metadata {
+    annotations = {
+      name = "qgate-env"
+    }
+
+    name = "qgate"
+  }
 }
