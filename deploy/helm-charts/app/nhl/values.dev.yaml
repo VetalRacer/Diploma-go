@@ -1,5 +1,5 @@
 name: nhl
-namespace: nhl-dev
+namespace: dev-env
 replicas: 1
 
 port: 80
