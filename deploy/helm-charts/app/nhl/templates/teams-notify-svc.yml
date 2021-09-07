@@ -6,11 +6,10 @@ metadata:
   labels:
     app: {{ .Values.name }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    heritage: {{ .Release.Service }}
 spec:
   ports:
     - name: {{ .Values.name }}
       port: {{ .Values.port }}
   selector:
     app: {{ .Values.name }}
-    release: {{ .Release.Name }}
-
