@@ -87,7 +87,7 @@ resource "kubernetes_namespace" "qgate-env" {
 
 resource "kubernetes_secret" "dev-env" {
   metadata {
-    name = "docker-cfg"
+    name = "artifactory"
     namespace = "develop"
   }
 
@@ -95,8 +95,8 @@ resource "kubernetes_secret" "dev-env" {
     ".dockerconfigjson" = <<DOCKER
 {
   "auths": {
-    "test": {
-      "auth": "${base64encode("test:test")}"
+    "${var.registry_server}": {
+      "auth": "${base64encode("${var.registry_username}:${var.registry_password}")}"
     }
   }
 }
@@ -104,5 +104,4 @@ DOCKER
   }
 
   type = "kubernetes.io/dockerconfigjson"
-  
 }
