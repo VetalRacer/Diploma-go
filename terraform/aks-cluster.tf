@@ -94,8 +94,8 @@ resource "kubernetes_secret" "dev-env" {
     ".dockerconfigjson" = <<DOCKER
 {
   "auths": {
-    "${var.registry_server}": {
-      "auth": "${base64encode("${var.registry_username}:${var.registry_password}")}"
+    "test": {
+      "auth": "${base64encode("test:test")}"
     }
   }
 }
