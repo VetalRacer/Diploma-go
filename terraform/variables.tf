@@ -3,11 +3,11 @@ variable "arm_client_id" {}
 variable "arm_client_secret" {}
 
 variable "registry_server" {
-    default = 'diplomacontainerregistry.azurecr.io'
+    default = "diplomacontainerregistry.azurecr.io"
 }
 
 variable "registry_username" {
-    default = 'diplomacontainerregistry'
+    default = "diplomacontainerregistry"
 }
 
 variable "registry_password" {}
