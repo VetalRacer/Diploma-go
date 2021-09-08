@@ -64,7 +64,7 @@ resource "kubernetes_namespace" "logging-env" {
   }
 }
 
-resource "kubernetes_namespace" "dev-monitoring" {
+resource "kubernetes_namespace" "monitoring" {
   metadata {
     annotations = {
       name = "dev-monitoring"
@@ -82,4 +82,26 @@ resource "kubernetes_namespace" "qgate-env" {
 
     name = "qgate"
   }
+}
+
+
+resource "kubernetes_secret" "dev-env" {
+  metadata {
+    name = "docker-cfg"
+  }
+
+  data = {
+    ".dockerconfigjson" = <<DOCKER
+{
+  "auths": {
+    "${var.registry_server}": {
+      "auth": "${base64encode("${var.registry_username}:${var.registry_password}")}"
+    }
+  }
+}
+DOCKER
+  }
+
+  type = "kubernetes.io/dockerconfigjson"
+  namespace = "develop"
 }
