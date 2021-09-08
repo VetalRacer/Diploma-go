@@ -88,6 +88,7 @@ resource "kubernetes_namespace" "qgate-env" {
 resource "kubernetes_secret" "dev-env" {
   metadata {
     name = "docker-cfg"
+    namespace = "develop"
   }
 
   data = {
@@ -103,5 +104,5 @@ DOCKER
   }
 
   type = "kubernetes.io/dockerconfigjson"
-  namespace = "develop"
+  
 }
