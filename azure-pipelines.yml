@@ -103,23 +103,54 @@ stages:
 
 - stage: 'Deploy_App'
   displayName: 'Deploy App'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/terraform'))
   jobs:
-    - job: Deploy_to_Dev
-      displayName: 'Deploy to Dev'
-      condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/terraform'), eq(variables['Build.SourceBranch'], 'refs/heads/develop')))
-      steps:
-        - task: HelmDeploy@0
-          displayName: Helm upgrade
-          inputs:
-            #connectionType: 'Azure Resource Manager'
-            #azureSubscriptionEndpoint: diplomaSP
-            azureResourceGroup: Diploma-rg
-            kubernetesCluster: Diploma-aks
-            command: upgrade
-            chartType: filepath
-            chartPath: deploy/helm-charts/app/nhl
-            valueFile: deploy/helm-charts/app/nhl/values.dev.yaml
-            #releaseName: azuredevopsdemo
-            namespace: develop
-            install: true
-            waitForExecution: false
+  - job:  Deploy_to_Dev
+    displayName: 'Deploy to Dev'
+    pool:
+      vmImage: 'ubuntu-18.04'
+    steps:
+    - script: |
+        # Cd to terraform folder.
+        cd terraform/app
+   
+        # Exit when any command returns a failure status.
+        set -e
+        # Write terraform.tfvars.
+        echo 'resource_group_location = "'$(ResourceGroupLocation)'"' | tee terraform.tfvars
+        # Write backend.tfvars.
+        echo 'resource_group_name = "tf-storage-rg"' | tee backend.tfvars
+        echo 'storage_account_name = "'$(StorageAccountName)'"' | tee -a backend.tfvars
+        echo 'container_name = "tfstate_app"' | tee -a backend.tfvars
+        echo 'key = "terraform.tfstate_app"' | tee -a backend.tfvars
+        # Initialize Terraform.
+        terraform init -input=false -backend-config="backend.tfvars"
+        # Apply the Terraform plan.
+        terraform apply -input=false -auto-approve
+
+      name: 'RunTerraform'
+      displayName: 'Run Terraform'
+
+
+#- stage: 'Deploy_App'
+#  displayName: 'Deploy App'
+#  jobs:
+#    - job: Deploy_to_Dev
+#      displayName: 'Deploy to Dev'
+#      condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/terraform'), eq(variables['Build.SourceBranch'], 'refs/heads/develop')))
+#      steps:
+#        - task: HelmDeploy@0
+#          displayName: Helm upgrade
+#          inputs:
+#            #connectionType: 'Azure Resource Manager'
+#            #azureSubscriptionEndpoint: diplomaSP
+#            azureResourceGroup: Diploma-rg
+#            kubernetesCluster: Diploma-aks
+#            command: upgrade
+#            chartType: filepath
+#            chartPath: deploy/helm-charts/app/nhl
+#            valueFile: deploy/helm-charts/app/nhl/values.dev.yaml
+#            #releaseName: azuredevopsdemo
+#            namespace: develop
+#            install: true
+#            waitForExecution: false
