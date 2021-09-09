@@ -5,4 +5,10 @@ resource "helm_release" "app" {
   namespace  = "develop"
   force_update = "true"
   atomic = "true"
+
+  service_principal {
+    client_id     = var.arm_client_id
+    client_secret = var.arm_client_secret
+  }
+
 }
