@@ -112,6 +112,7 @@ stages:
     steps:
     - script: |
         # Cd to terraform folder.
+        pwd
         cd terraform/app
    
         # Exit when any command returns a failure status.
