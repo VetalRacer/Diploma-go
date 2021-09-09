@@ -24,3 +24,10 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.default.kube_config.0.cluster_ca_certificate)
 
 }
+
+
+provider "helm" {
+  kubernetes {
+    config_path = "~/.kube/config"
+  }
+}
