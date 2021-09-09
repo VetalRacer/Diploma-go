@@ -114,6 +114,7 @@ stages:
         # Cd to terraform folder.
         pwd
         cd terraform/app
+        pwd
    
         # Exit when any command returns a failure status.
         set -e
