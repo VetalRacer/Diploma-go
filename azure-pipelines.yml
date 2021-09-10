@@ -37,7 +37,7 @@ stages:
         # Initialize Terraform.
         terraform init -input=false
         # Apply the Terraform plan.
-        terraform apply -input=false -auto-approve
+         terraform apply -input=false -auto-approve
 
       condition: and(succeeded(), eq(variables.commitMessage, 'firstdeploy'))
 
@@ -66,7 +66,7 @@ stages:
         terraform apply -input=false -auto-approve
 
         # Destroy the Terraform plan.
-        #terraform destroy -input=false -auto-approve
+        terraform destroy -input=false -auto-approve
 
       name: 'RunTerraform'
       displayName: 'Run Terraform'
