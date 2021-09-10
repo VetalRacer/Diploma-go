@@ -18,8 +18,6 @@ stages:
     displayName: 'Prepare Azure Infrastructure'
     pool:
       vmImage: 'ubuntu-18.04'
-    variables:
-    - group: Infrastructure
     steps:
     - task: Bash@3
       displayName: "set commitMessage variable"
@@ -66,7 +64,7 @@ stages:
         terraform apply -input=false -auto-approve
 
         # Destroy the Terraform plan.
-        terraform destroy -input=false -auto-approve
+        # terraform destroy -input=false -auto-approve
 
       name: 'RunTerraform'
       displayName: 'Run Terraform'
