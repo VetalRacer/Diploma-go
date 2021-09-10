@@ -17,6 +17,7 @@ resource "azurerm_key_vault" "default" {
 
     secret_permissions = [
       "set",
+      "list",
       "get",
       "delete",
       "purge",
