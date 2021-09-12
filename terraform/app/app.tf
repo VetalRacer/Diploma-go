@@ -35,3 +35,24 @@ resource "helm_release" "app" {
   atomic = "true"
 
 }
+
+
+data "azurerm_key_vault_secret" "hostk8s" {
+  name         = "hostk8s"
+  key_vault_id = azurerm_key_vault.default.id
+}
+
+data "azurerm_key_vault_secret" "clientcert" {
+  name         = "clientcert"
+  key_vault_id = azurerm_key_vault.default.id
+}
+
+data "azurerm_key_vault_secret" "clientkey" {
+  name         = "clientkey"
+  key_vault_id = azurerm_key_vault.default.id
+}
+
+data "azurerm_key_vault_secret" "clientcacert" {
+  name         = "clientcacert"
+  key_vault_id = azurerm_key_vault.default.id
+}
