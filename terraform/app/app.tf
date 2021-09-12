@@ -17,14 +17,14 @@ provider "azurerm" {
   features {}
 }
 
-provider "helm" {
-  kubernetes {
-    host                   = data.azurerm_key_vault_secret.hostk8s.value
-    client_certificate     = base64decode(data.azurerm_key_vault_secret.clientcert.value)
-    client_key             = base64decode(data.azurerm_key_vault_secret.clientkey.value)
-    cluster_ca_certificate = base64decode(data.azurerm_key_vault_secret.clientcacert.value)
-  }
-}
+#provider "helm" {
+#  kubernetes {
+#    host                   = data.azurerm_key_vault_secret.hostk8s.value
+#    client_certificate     = base64decode(data.azurerm_key_vault_secret.clientcert.value)
+#    client_key             = base64decode(data.azurerm_key_vault_secret.clientkey.value)
+#    cluster_ca_certificate = base64decode(data.azurerm_key_vault_secret.clientcacert.value)
+#  }
+#}
 
 #resource "helm_release" "app" {
 #  name       = "app"
