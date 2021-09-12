@@ -63,8 +63,8 @@ stages:
         # Apply the Terraform plan.
         terraform apply -input=false -auto-approve
 
-        ## Destroy the Terraform plan.
-         terraform destroy -input=false -auto-approve
+        # Destroy the Terraform plan.
+        # terraform destroy -input=false -auto-approve
 
       name: 'RunTerraform'
       displayName: 'Run Terraform'
