@@ -17,23 +17,23 @@ provider "azurerm" {
   features {}
 }
 
-#provider "helm" {
-#  kubernetes {
-#    host                   = data.azurerm_key_vault_secret.hostk8s.value
-#    client_certificate     = base64decode(data.azurerm_key_vault_secret.clientcert.value)
-#    client_key             = base64decode(data.azurerm_key_vault_secret.clientkey.value)
-#    cluster_ca_certificate = base64decode(data.azurerm_key_vault_secret.clientcacert.value)
-#  }
-#}
+provider "helm" {
+  kubernetes {
+    host                   = data.azurerm_key_vault_secret.hostk8s.value
+    client_certificate     = base64decode(data.azurerm_key_vault_secret.clientcert.value)
+    client_key             = base64decode(data.azurerm_key_vault_secret.clientkey.value)
+    cluster_ca_certificate = base64decode(data.azurerm_key_vault_secret.clientcacert.value)
+  }
+}
 
-#resource "helm_release" "app" {
-#  name       = "app"
-#  chart      = "../../deploy/helm-charts/app/nhl"
-#  values     = [templatefile("../../deploy/helm-charts/app/nhl/values.dev.yaml", {})]
-#  namespace  = "develop"
-#  force_update = "true"
-#  atomic = "true"
-#}
+resource "helm_release" "app" {
+  name       = "app"
+  chart      = "../../deploy/helm-charts/app/nhl"
+  values     = [templatefile("../../deploy/helm-charts/app/nhl/values.dev.yaml", {})]
+  namespace  = "develop"
+  force_update = "true"
+  atomic = "true"
+}
 
 
 data "azurerm_key_vault_secret" "hostk8s" {
