@@ -39,20 +39,20 @@ resource "helm_release" "app" {
 
 data "azurerm_key_vault_secret" "hostk8s" {
   name         = "hostk8s"
-  key_vault_id = azurerm_key_vault.default.id
+  key_vault_id = "/subscriptions/8fcd86ec-9ad9-4c85-a8e0-b5410c6e01ac/resourceGroups/Diploma-rg/providers/Microsoft.KeyVault/vaults/diplomavault"
 }
 
 data "azurerm_key_vault_secret" "clientcert" {
   name         = "clientcert"
-  key_vault_id = azurerm_key_vault.default.id
+  key_vault_id = "/subscriptions/8fcd86ec-9ad9-4c85-a8e0-b5410c6e01ac/resourceGroups/Diploma-rg/providers/Microsoft.KeyVault/vaults/diplomavault"
 }
 
 data "azurerm_key_vault_secret" "clientkey" {
   name         = "clientkey"
-  key_vault_id = azurerm_key_vault.default.id
+  key_vault_id = "/subscriptions/8fcd86ec-9ad9-4c85-a8e0-b5410c6e01ac/resourceGroups/Diploma-rg/providers/Microsoft.KeyVault/vaults/diplomavault"
 }
 
 data "azurerm_key_vault_secret" "clientcacert" {
   name         = "clientcacert"
-  key_vault_id = azurerm_key_vault.default.id
+  key_vault_id = "/subscriptions/8fcd86ec-9ad9-4c85-a8e0-b5410c6e01ac/resourceGroups/Diploma-rg/providers/Microsoft.KeyVault/vaults/diplomavault"
 }
