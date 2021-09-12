@@ -105,28 +105,3 @@ DOCKER
 
   type = "kubernetes.io/dockerconfigjson"
 }
-
-
-resource "azurerm_key_vault_secret" "hostk8s" {
-  name         = "hostk8s"
-  value        = azurerm_kubernetes_cluster.default.kube_config.0.host
-  key_vault_id = "/subscriptions/8fcd86ec-9ad9-4c85-a8e0-b5410c6e01ac/resourceGroups/tf-storage-rg/providers/Microsoft.KeyVault/vaults/diplomakeyvault"
-}
-
-resource "azurerm_key_vault_secret" "clientcert" {
-  name         = "clientcert"
-  value        = azurerm_kubernetes_cluster.default.kube_config.0.client_certificate
-  key_vault_id = "/subscriptions/8fcd86ec-9ad9-4c85-a8e0-b5410c6e01ac/resourceGroups/tf-storage-rg/providers/Microsoft.KeyVault/vaults/diplomakeyvault"
-}
-
-resource "azurerm_key_vault_secret" "clientkey" {
-  name         = "clientkey"
-  value        = azurerm_kubernetes_cluster.default.kube_config.0.client_key
-  key_vault_id = "/subscriptions/8fcd86ec-9ad9-4c85-a8e0-b5410c6e01ac/resourceGroups/tf-storage-rg/providers/Microsoft.KeyVault/vaults/diplomakeyvault"
-}
-
-resource "azurerm_key_vault_secret" "clientcacert" {
-  name         = "clientcacert"
-  value        = azurerm_kubernetes_cluster.default.kube_config.0.cluster_ca_certificate
-  key_vault_id = "/subscriptions/8fcd86ec-9ad9-4c85-a8e0-b5410c6e01ac/resourceGroups/tf-storage-rg/providers/Microsoft.KeyVault/vaults/diplomakeyvault"
-}
