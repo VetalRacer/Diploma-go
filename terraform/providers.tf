@@ -17,6 +17,8 @@ provider "azurerm" {
   features {}
 }
 
+data "azurerm_client_config" "default" {}
+
 provider "kubernetes" {
   host                   = azurerm_kubernetes_cluster.default.kube_config.0.host
   client_certificate     = base64decode(azurerm_kubernetes_cluster.default.kube_config.0.client_certificate)
