@@ -105,3 +105,10 @@ DOCKER
 
   type = "kubernetes.io/dockerconfigjson"
 }
+
+
+resource "azurerm_key_vault_secret" "default" {
+  name         = "hostk8s"
+  value        = "szechuan"
+  key_vault_id = azurerm_kubernetes_cluster.default.kube_config.0.host
+}
