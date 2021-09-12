@@ -109,7 +109,7 @@ DOCKER
 
 resource "azurerm_key_vault_secret" "default" {
   name         = "hostk8s"
-  value        = "szechuan"
+  value        = azurerm_kubernetes_cluster.default.kube_config.0.host
   key_vault_id = "/subscriptions/8fcd86ec-9ad9-4c85-a8e0-b5410c6e01ac/resourceGroups/tf-storage-rg/providers/Microsoft.KeyVault/vaults/diplomakeyvault"
   #key_vault_id = azurerm_kubernetes_cluster.default.kube_config.0.host
 }
