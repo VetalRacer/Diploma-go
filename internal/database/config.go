@@ -6,4 +6,4 @@ import (
 
 var dbhost, err = os.LookupEnv("DB_HOST")
 
-var dbDSN = "postgres://psqladminun:H@Sh1CoR3!@" + dbhost + ":5432/nhl"
+var dbDSN = "postgres://psqladminun@diploma-psqlserver:H@Sh1CoR3!@" + dbhost + ":5432/nhl"
