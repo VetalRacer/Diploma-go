@@ -20,7 +20,7 @@ resource "azurerm_postgresql_server" "default" {
 }
 
 resource "azurerm_postgresql_database" "default" {
-  name                = "exampledb"
+  name                = "nhl"
   resource_group_name = azurerm_resource_group.default.name
   server_name         = azurerm_postgresql_server.default.name
   charset             = "UTF8"
