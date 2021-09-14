@@ -126,7 +126,7 @@ stages:
         # Initialize Terraform.
         terraform init -input=false -backend-config="backend-app.tfvars"
         # Apply the Terraform plan.
-        terraform apply -input=false -auto-approve
+        # terraform apply -input=false -auto-approve
 
       name: 'RunTerraform'
       displayName: 'Run Terraform'
@@ -136,27 +136,3 @@ stages:
         TF_VAR_arm_tenant_id: $(ARM_TENANT_ID)
         TF_VAR_arm_subscription_id: $(ARM_SUBSCRIPTION_ID)
         TF_VAR_registry_password: $(REGISTRY_PASSWORD)
-
-
-#- stage: 'Deploy_App'
-#  displayName: 'Deploy App'
-#  jobs:
-#    - job: Deploy_to_Dev
-#      displayName: 'Deploy to Dev'
-#      condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/terraform'), eq(variables['Build.SourceBranch'], 'refs/heads/develop')))
-#      steps:
-#        - task: HelmDeploy@0
-#          displayName: Helm upgrade
-#          inputs:
-#            #connectionType: 'Azure Resource Manager'
-#            #azureSubscriptionEndpoint: diplomaSP
-#            azureResourceGroup: Diploma-rg
-#            kubernetesCluster: Diploma-aks
-#            command: upgrade
-#            chartType: filepath
-#            chartPath: deploy/helm-charts/app/nhl
-#            valueFile: deploy/helm-charts/app/nhl/values.dev.yaml
-#            #releaseName: azuredevopsdemo
-#            namespace: develop
-#            install: true
-#            waitForExecution: false

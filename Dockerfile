@@ -12,7 +12,7 @@ WORKDIR /app
 COPY migrations /app/migrations/
 COPY templates /app/templates/
 COPY --from=builder /app/main /app/
-ENV DB_HOST=diploma-psqlserver.postgres.database.azure.com
+#ENV DB_HOST=diploma-psqlserver.postgres.database.azure.com
 
 EXPOSE 80
 

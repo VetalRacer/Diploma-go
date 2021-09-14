@@ -25,6 +25,9 @@ spec:
           ports:
             - containerPort: {{.Values.port}}
               protocol: TCP
+          envFrom:
+          - secretRef:
+              name: {{ .Values.name }}-secret
       restartPolicy: Always
       imagePullSecrets:
         - name: {{.Values.image.imagePullSecret}}
