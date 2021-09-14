@@ -26,3 +26,11 @@ resource "azurerm_postgresql_database" "default" {
   charset             = "UTF8"
   collation           = "English_United States.1252"
 }
+
+resource "azurerm_postgresql_firewall_rule" "default" {
+  name                = "k8s"
+  resource_group_name = azurerm_resource_group.default.name
+  server_name         = azurerm_postgresql_server.default.name
+  start_ip_address    = "0.0.0.0"
+  end_ip_address      = "0.0.0.0"
+}
