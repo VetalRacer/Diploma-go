@@ -18,4 +18,4 @@ resources:
     cpu: 250m
     memory: 256Mi
 
-db_pass: password
+#db_pass: password
