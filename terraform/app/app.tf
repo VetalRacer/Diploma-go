@@ -33,6 +33,13 @@ resource "helm_release" "app" {
   namespace  = "develop"
   force_update = "true"
   atomic = "true"
+
+  set {
+    name  = "db_pass"
+    value = "${var.db_pass}"
+  }
+
+
 }
 
 
