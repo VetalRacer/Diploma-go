@@ -3,7 +3,7 @@ resource "azurerm_postgresql_server" "default" {
   location            = azurerm_resource_group.default.location
   resource_group_name = azurerm_resource_group.default.name
 
-  administrator_login          = "psqladmin"
+  administrator_login          = "psqladminun"
   administrator_login_password = var.db_pass
 
   sku_name   = "GP_Gen5_4"
