@@ -15,4 +15,4 @@ variable "registry_username" {
     default = "diplomacontainerregistry"
 }
 
-variable "registry_password" {}
+#variable "registry_password" {}
