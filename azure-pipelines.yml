@@ -74,7 +74,7 @@ stages:
         TF_VAR_arm_tenant_id: $(ARM_TENANT_ID)
         TF_VAR_arm_subscription_id: $(ARM_SUBSCRIPTION_ID)
         TF_VAR_db_pass: $(DB_PASS)
-        #TF_VAR_registry_password: $(REGISTRY_PASSWORD)
+        TF_VAR_registry_password: $(REGISTRY_PASSWORD)
       
 - stage: 'Build'
   displayName: 'Build application'
