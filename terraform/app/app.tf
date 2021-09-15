@@ -36,7 +36,7 @@ resource "helm_release" "app" {
 
   set {
     name  = "db_pass"
-    value = var.db_pass
+    value = "${base64encode("${var.db_pass}")}"
   }
 
 
