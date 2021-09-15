@@ -34,10 +34,10 @@ resource "helm_release" "app" {
   force_update = "true"
   atomic = "true"
 
-  set {
-    name  = "app.db_pass"
-    value = "${base64encode("${var.db_pass}")}"
-  }
+  #set {
+  #  name  = "app.db_pass"
+  #  value = "${base64encode("${var.db_pass}")}"
+  #}
 
 
 }
