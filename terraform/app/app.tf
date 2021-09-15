@@ -36,7 +36,7 @@ resource "helm_release" "app" {
 
   set {
     name  = "db_pass"
-    value = "${var.db_pass}"
+    value = var.db_pass
   }
 
 
@@ -61,4 +61,10 @@ data "azurerm_key_vault_secret" "clientkey" {
 data "azurerm_key_vault_secret" "clientcacert" {
   name         = "clientcacert"
   key_vault_id = "/subscriptions/8fcd86ec-9ad9-4c85-a8e0-b5410c6e01ac/resourceGroups/Diploma-rg/providers/Microsoft.KeyVault/vaults/diplomavault"
+}
+
+
+variable "db_pass" {
+  description = "The Password associated with the administrator_login for the PostgreSQL Server."
+  type        = string
 }
