@@ -49,8 +49,8 @@ resource "azurerm_key_vault_secret" "clientcacert" {
   key_vault_id = azurerm_key_vault.default.id
 }
 
-#resource "azurerm_key_vault_secret" "registrypass" {
-#  name         = "registrypass"
-#  value        = azurerm_container_registry.default.primary_access_key
-#  key_vault_id = azurerm_key_vault.default.id
-#}
+resource "azurerm_key_vault_secret" "registrypass" {
+  name         = "registrypass"
+  value        = azurerm_container_registry.default.admin_password
+  key_vault_id = azurerm_key_vault.default.id
+}
