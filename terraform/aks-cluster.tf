@@ -96,7 +96,7 @@ resource "kubernetes_secret" "dev-env" {
 {
   "auths": {
     "${var.registry_server}": {
-      "auth": "${base64encode("${var.registry_username}:${var.registry_password}")}"
+      "auth": "${base64encode("${azurerm_container_registry.default.name}:${azurerm_container_registry.default.admin_password}")}"
     }
   }
 }
