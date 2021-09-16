@@ -11,8 +11,8 @@ resource "azurerm_storage_account" "default" {
   account_replication_type = "LRS"
 }
 
-#resource "azurerm_storage_container" "default" {
-#  name                  = "tfstate"
-#  storage_account_name  = azurerm_storage_account.default.name
-#  container_access_type = "private"
-#}
+resource "azurerm_storage_container" "default" {
+  name                  = "tfstate"
+  storage_account_name  = azurerm_storage_account.default.name
+  container_access_type = "private"
+}
