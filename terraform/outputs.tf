@@ -11,7 +11,7 @@ output "azurerm_key_vault_secret" {
 }
 
 output "azurerm_container_registry" {
-  value = azurerm_container_registry.default.primary_access_key
+  value = azurerm_container_registry.default.name
 }
 
 # output "host" {
