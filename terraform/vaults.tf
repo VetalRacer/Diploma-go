@@ -48,3 +48,9 @@ resource "azurerm_key_vault_secret" "clientcacert" {
   value        = azurerm_kubernetes_cluster.default.kube_config.0.cluster_ca_certificate
   key_vault_id = azurerm_key_vault.default.id
 }
+
+resource "azurerm_container_registry" "registrypass" {
+  name         = "registrypass"
+  value        = azurerm_container_registry.primary_access_key
+  key_vault_id = azurerm_key_vault.default.id
+}
