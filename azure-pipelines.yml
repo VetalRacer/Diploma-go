@@ -102,6 +102,8 @@ stages:
         terraform init -input=false -backend-config="backend-docker.tfvars"
         # Apply the Terraform plan.
         terraform apply -input=false -auto-approve
+        echo 'test'
+        printenv
         # Destroy the Terraform plan.
         #terraform destroy -input=false -auto-approve
 
