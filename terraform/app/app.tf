@@ -45,22 +45,22 @@ resource "helm_release" "app" {
 
 data "azurerm_key_vault_secret" "hostk8s" {
   name         = "hostk8s"
-  key_vault_id = "/subscriptions/8fcd86ec-9ad9-4c85-a8e0-b5410c6e01ac/resourceGroups/Diploma-rg/providers/Microsoft.KeyVault/vaults/diplomavault"
+  key_vault_id = "/subscriptions/29ce556b-5437-4c4b-97d1-4b2730cda3ef/resourceGroups/Diploma-rg/providers/Microsoft.KeyVault/vaults/diplomanhlvault"
 }
 
 data "azurerm_key_vault_secret" "clientcert" {
   name         = "clientcert"
-  key_vault_id = "/subscriptions/8fcd86ec-9ad9-4c85-a8e0-b5410c6e01ac/resourceGroups/Diploma-rg/providers/Microsoft.KeyVault/vaults/diplomavault"
+  key_vault_id = "/subscriptions/29ce556b-5437-4c4b-97d1-4b2730cda3ef/resourceGroups/Diploma-rg/providers/Microsoft.KeyVault/vaults/diplomanhlvault"
 }
 
 data "azurerm_key_vault_secret" "clientkey" {
   name         = "clientkey"
-  key_vault_id = "/subscriptions/8fcd86ec-9ad9-4c85-a8e0-b5410c6e01ac/resourceGroups/Diploma-rg/providers/Microsoft.KeyVault/vaults/diplomavault"
+  key_vault_id = "/subscriptions/29ce556b-5437-4c4b-97d1-4b2730cda3ef/resourceGroups/Diploma-rg/providers/Microsoft.KeyVault/vaults/diplomanhlvault"
 }
 
 data "azurerm_key_vault_secret" "clientcacert" {
   name         = "clientcacert"
-  key_vault_id = "/subscriptions/8fcd86ec-9ad9-4c85-a8e0-b5410c6e01ac/resourceGroups/Diploma-rg/providers/Microsoft.KeyVault/vaults/diplomavault"
+  key_vault_id = "/subscriptions/29ce556b-5437-4c4b-97d1-4b2730cda3ef/resourceGroups/Diploma-rg/providers/Microsoft.KeyVault/vaults/diplomanhlvault"
 }
 
 
