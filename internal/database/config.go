@@ -10,6 +10,6 @@ var dbpass, _ = os.LookupEnv("DB_PASS")
 
 var dbDSN = "postgres://" + dblogin + ":" + dbpass + dbhost + ":5432/nhl"
 
-func print {
+func print() {
 fmt.Println(dbDSN)
 }
