@@ -36,7 +36,7 @@ resource "helm_release" "app" {
 
   set {
     name  = "db_pass"
-    value = "${base64encode("${var.app.db_pass}")}"
+    value = "${base64encode("${var.db_pass}")}"
   }
 
 
@@ -64,7 +64,7 @@ data "azurerm_key_vault_secret" "clientcacert" {
 }
 
 
-variable "app.db_pass" {
+variable "db_pass" {
   description = "The Password associated with the administrator_login for the PostgreSQL Server."
   type        = string
 }
