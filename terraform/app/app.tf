@@ -39,6 +39,11 @@ resource "helm_release" "app" {
     value = "${base64encode("${var.db_pass}")}"
   }
 
+  set {
+    name  = "tag"
+    value = "${tag}"
+  }
+
 
 }
 
@@ -68,3 +73,5 @@ variable "db_pass" {
   description = "The Password associated with the administrator_login for the PostgreSQL Server."
   type        = string
 }
+
+variable "tag" {}
