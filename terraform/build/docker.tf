@@ -22,6 +22,8 @@ data "azurerm_key_vault_secret" "registrypass" {
   key_vault_id = "/subscriptions/29ce556b-5437-4c4b-97d1-4b2730cda3ef/resourceGroups/Diploma-rg/providers/Microsoft.KeyVault/vaults/diplomavault"
 }
 
-provisioner "local-exec" {
-  command = "export PASSSSS=data.azurerm_key_vault_secret.registrypass.value"
+resource "null_resource" "cluster" {
+  provisioner "local-exec" {
+    command = "export PASSSSS=data.azurerm_key_vault_secret.registrypass.value"
+  }
 }
