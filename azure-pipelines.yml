@@ -133,10 +133,9 @@ stages:
     steps:
     - script: |
         # Cd to terraform folder.
-        pwd
+        
         cd terraform/app
-        pwd
-   
+        printenv   
         # Exit when any command returns a failure status.
         set -e
         # Write terraform.tfvars.
