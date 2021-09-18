@@ -102,9 +102,6 @@ stages:
         terraform init -input=false -backend-config="backend-docker.tfvars"
         # Apply the Terraform plan.
         terraform apply -input=false -auto-approve
-        printenv
-        ls -al
-        cat private_ips.txt
         # Destroy the Terraform plan.
         #terraform destroy -input=false -auto-approve
 
@@ -171,7 +168,6 @@ stages:
         terraform init -input=false -backend-config="backend-app.tfvars"
         # Apply the Terraform plan.
          terraform apply -input=false -auto-approve
-         terraform output example1
 
       name: 'RunTerraform'
       displayName: 'Run Terraform'
