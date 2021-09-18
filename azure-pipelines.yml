@@ -102,7 +102,7 @@ stages:
         terraform init -input=false -backend-config="backend-docker.tfvars"
         # Apply the Terraform plan.
         terraform apply -input=false -auto-approve
-        export test=$(terraform outputm -raw example1)
+        export test=$(terraform output -raw example1)
         #terraform output -raw example1
         echo $test
         printenv
