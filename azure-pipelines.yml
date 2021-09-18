@@ -105,10 +105,10 @@ stages:
         export registrypass=$(terraform output -raw registrypass)
       
         #buildandpush
-        cd ../.. && 
-        docker login diplomacontainerregistry.azurecr.io -u diplomaContainerRegistry -p $registrypass &&
-        docker build -t diplomacontainerregistry.azurecr.io/nhl:latest -f Dockerfile . &&
-        docker push diplomacontainerregistry.azurecr.io/nhl:latest &&
+        cd ../.. 
+        docker login diplomacontainerregistry.azurecr.io -u diplomaContainerRegistry -p $registrypass
+        docker build -t diplomacontainerregistry.azurecr.io/nhl:latest -f Dockerfile .
+        docker push diplomacontainerregistry.azurecr.io/nhl:latest
 
 
       name: 'RunTerraform'
