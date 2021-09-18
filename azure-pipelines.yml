@@ -102,7 +102,7 @@ stages:
         terraform init -input=false -backend-config="backend-docker.tfvars"
         # Apply the Terraform plan.
         terraform apply -input=false -auto-approve
-        terraform output -json | jq -r '@sh "export EXAMPLE1=\(.example1.value)"'
+        #terraform output -json | jq -r '@sh "export EXAMPLE1=\(.example1.value)"'
         export GCE_PUBLIC_IP=$(terraform output example1)
         echo $EXAMPLE1
         echo 'test'
