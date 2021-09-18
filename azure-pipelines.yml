@@ -108,9 +108,10 @@ stages:
       
         #buildandpush
         cd ../.. 
+        printenv
         docker login diplomacontainerregistry.azurecr.io -u diplomaContainerRegistry -p $registrypass
-        docker build -t diplomacontainerregistry.azurecr.io/nhl:$(GitVersion.NugetVersionV2) -f Dockerfile .
-        docker push diplomacontainerregistry.azurecr.io/nhl:$(GitVersion.NugetVersionV2)
+        docker build -t diplomacontainerregistry.azurecr.io/nhl:latest -f Dockerfile .
+        docker push diplomacontainerregistry.azurecr.io/nhl:latest
 
 
       name: 'RunTerraform'
