@@ -108,7 +108,7 @@ stages:
         ls -al
         #buildandpush
         docker login diplomacontainerregistry.azurecr.io -u diplomaContainerRegistry -p $registrypass
-        docker build -t diplomacontainerregistry.azurecr.io/nhl:latest -f ../.. .
+        docker build -t diplomacontainerregistry.azurecr.io/nhl:latest -f Dockerfile .
         docker push $diplomacontainerregistry.azurecr.io/nhl:latest
 
 
