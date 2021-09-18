@@ -2,6 +2,7 @@ package database
 
 import (
 	"os"
+	"fmt"
 )
 
 var dbhost, _ = os.LookupEnv("DB_HOST")
