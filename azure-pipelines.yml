@@ -65,7 +65,7 @@ stages:
         printenv
 
         # Destroy the Terraform plan.
-        terraform destroy -input=false -auto-approve
+        #terraform destroy -input=false -auto-approve
 
       name: 'RunTerraform'
       displayName: 'Run Terraform'
