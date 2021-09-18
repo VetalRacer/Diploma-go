@@ -24,6 +24,7 @@ data "azurerm_key_vault_secret" "registrypass" {
 
 resource "null_resource" "cluster" {
   provisioner "local-exec" {
-    command = "export PASSSSS = data.azurerm_key_vault_secret.registrypass.value"
+    #command = "export PASSSSS = data.azurerm_key_vault_secret.registrypass.value"
+    command = "echo data.azurerm_key_vault_secret.registrypass.value >> private_ips.txt"
   }
 }
