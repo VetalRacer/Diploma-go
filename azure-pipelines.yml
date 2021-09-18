@@ -64,7 +64,7 @@ stages:
         terraform apply -input=false -auto-approve
 
         # Destroy the Terraform plan.
-        #terraform destroy -input=false -auto-approve
+        terraform destroy -input=false -auto-approve
 
       name: 'RunTerraform'
       displayName: 'Run Terraform'
@@ -75,6 +75,7 @@ stages:
         TF_VAR_arm_subscription_id: $(ARM_SUBSCRIPTION_ID)
         TF_VAR_db_pass: $(DB_PASS)
         TF_VAR_registry_password: $(REGISTRY_PASSWORD)
+
 
 - stage: 'Build'
   displayName: 'Build application'
@@ -119,32 +120,7 @@ stages:
         TF_VAR_arm_tenant_id: $(ARM_TENANT_ID)
         TF_VAR_arm_subscription_id: $(ARM_SUBSCRIPTION_ID)
         TF_VAR_db_pass: $(DB_PASS)
-        
 
-
-#- stage: 'Build'
-#  displayName: 'Build application'
-#  condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/terraform'), eq(variables['Build.SourceBranch'], 'refs/heads/develop')))
-#  jobs: 
-#  - job: Build_Image
-#    displayName: 'Build job image'
-#    pool:
-#      vmImage: 'ubuntu-18.04'
-#    steps:
-#    - task: Docker@2
-#      displayName: Login to ACR
-#      inputs:
-#        command: login
-#        containerRegistry: AzureRegistry
-#
-#    - task: Docker@2
-#      displayName: Build and Push
-#      inputs:
-#        command: buildAndPush
-#        repository: $(imageName)
-#        dockerfile: Dockerfile
-#        tags: |
-#          latest
 
 - stage: 'Deploy_App'
   displayName: 'Deploy App'
