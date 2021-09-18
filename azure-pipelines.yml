@@ -137,7 +137,7 @@ stages:
         # Cd to terraform folder.
         
         cd terraform/app
-        export TF_VAR_tag=$(BUILD_BUILDNUMBER)
+        export TF_VAR_tag=$(echo $BUILD_BUILDNUMBER)
         printenv   
         # Exit when any command returns a failure status.
         set -e

@@ -41,7 +41,7 @@ resource "helm_release" "app" {
 
   set {
     name  = "tag"
-    value = "${tag}"
+    value = var.tag
   }
 
 
