@@ -103,6 +103,9 @@ stages:
         # Apply the Terraform plan.
         terraform apply -input=false -auto-approve
         terraform output -json | jq -r '@sh "export EXAMPLE1=\(.example1.value)"'
+        ls -al
+        source env.sh 
+        echo $EXAMPLE1
         echo 'test'
         printenv
         # Destroy the Terraform plan.
