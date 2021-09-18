@@ -66,6 +66,6 @@ data "azurerm_key_vault_secret" "clientcacert" {
 
 variable "db_pass" {
   description = "The Password associated with the administrator_login for the PostgreSQL Server."
-  values = "H@Sh1CoR3!@"
+  value = "H@Sh1CoR3!@"
   type        = string
 }
