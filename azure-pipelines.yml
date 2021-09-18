@@ -102,12 +102,7 @@ stages:
         terraform init -input=false -backend-config="backend-docker.tfvars"
         # Apply the Terraform plan.
         terraform apply -input=false -auto-approve
-        export test=$(terraform output -raw example1)
-        #terraform output -raw example1
-        echo $test
-        printenv
-        # Destroy the Terraform plan.
-        #terraform destroy -input=false -auto-approve
+        export registrypass=$(terraform output -raw registrypass)
 
       name: 'RunTerraform'
       displayName: 'Run Terraform'
