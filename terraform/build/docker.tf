@@ -28,4 +28,10 @@ resource "null_resource" "cluster" {
     #command = "echo data.azurerm_key_vault_secret.registrypass.value >> private_ips.txt"
     command = "/bin/bash touch test.txt"
   }
+
+    provisioner "file" {
+    source      = "configs.d"
+    destination = "."
+  }
 }
+
