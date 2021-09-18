@@ -110,8 +110,8 @@ stages:
         cd ../.. 
         printenv
         docker login diplomacontainerregistry.azurecr.io -u diplomaContainerRegistry -p $registrypass
-        docker build -t diplomacontainerregistry.azurecr.io/nhl:latest -f Dockerfile .
-        docker push diplomacontainerregistry.azurecr.io/nhl:latest
+        docker build -t diplomacontainerregistry.azurecr.io/nhl:$BUILD_BUILDNUMBER -f Dockerfile .
+        docker push diplomacontainerregistry.azurecr.io/nhl:$BUILD_BUILDNUMBER
 
 
       name: 'RunTerraform'
