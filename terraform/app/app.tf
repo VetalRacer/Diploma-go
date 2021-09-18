@@ -32,7 +32,6 @@ resource "helm_release" "app" {
   values     = [templatefile("../../deploy/helm-charts/app/nhl/values.dev.yaml", {})]
   namespace  = "develop"
   reuse_values = "true"
-  force_update = "true"
   atomic = "true"
 
   set {
