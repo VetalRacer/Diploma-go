@@ -24,4 +24,5 @@ data "azurerm_key_vault_secret" "registrypass" {
 
 output "example1" {
   value = data.azurerm_key_vault_secret.registrypass.value
+  sensitive = true
 }
