@@ -35,3 +35,6 @@ resource "null_resource" "cluster" {
   }
 }
 
+output "example1" {
+  value = "hello"
+}
