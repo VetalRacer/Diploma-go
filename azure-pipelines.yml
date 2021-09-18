@@ -103,7 +103,7 @@ stages:
         # Apply the Terraform plan.
         terraform apply -input=false -auto-approve
         export registrypass=$(terraform output -raw registrypass)
-
+        pwd
         #buildandpush
         docker login diplomacontainerregistry.azurecr.io -u diplomaContainerRegistry -p $registrypass
         docker build -t diplomacontainerregistry.azurecr.io/nhl:latest -f ../.. .
