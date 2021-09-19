@@ -139,7 +139,8 @@ stages:
           steps:
           - script: |
               # Cd to terraform folder.
-              
+              pwd
+              ls -al
               cd terraform/app
               export TF_VAR_tag=$(echo $BUILD_BUILDNUMBER)
               printenv
