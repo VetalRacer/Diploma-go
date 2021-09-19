@@ -23,7 +23,6 @@ data "azurerm_key_vault_secret" "registrypass" {
 }
 
 output "registrypass" {
-  #value = nonsensitive(data.azurerm_key_vault_secret.registrypass.value)
   value = data.azurerm_key_vault_secret.registrypass.value
   sensitive = true
 }
