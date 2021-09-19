@@ -136,8 +136,6 @@ stages:
     dependsOn: "waitForValidation"
     pool:
       vmImage: 'ubuntu-18.04'
-    variables:
-      namespace: develop
     steps:
     - script: |
         # Cd to terraform folder.
@@ -164,4 +162,4 @@ stages:
       env:
         TF_VAR_db_pass: $(DB_PASS)
         TF_VAR_registry_url: $(registryUrl)
-        TF_VAR_namespace: $(namespace)
+        TF_VAR_values_name: values.dev

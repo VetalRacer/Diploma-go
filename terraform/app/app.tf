@@ -29,7 +29,7 @@ provider "helm" {
 resource "helm_release" "app" {
   name       = "app"
   chart      = "../../deploy/helm-charts/app/nhl"
-  values     = [templatefile("../../deploy/helm-charts/app/nhl/values.dev.yaml", {})]
+  values     = [templatefile("../../deploy/helm-charts/app/nhl/${values.name}.yaml", {})]
   namespace  = var.namespace
   reuse_values = "true"
   atomic = "true"
@@ -84,7 +84,7 @@ variable "db_pass" {
 }
 
 variable "tag" {}
-variable "namespace" {}
+variable "values_name" {}
 variable "registry_url" {
     description = "Azure Registry URL"
 }

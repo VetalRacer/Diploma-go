@@ -1,5 +1,5 @@
 name: nhl
-#namespace: develop
+namespace: develop
 replicas: 1
 
 port: 80
