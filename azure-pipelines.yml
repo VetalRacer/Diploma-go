@@ -128,13 +128,13 @@ stages:
   displayName: 'Deploy App'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/terraform'))
   jobs:
-  - job:  Deploy_to_Dev
+  - job: waitForValidation
     displayName: 'Deploy to Dev'
     pool:
       vmImage: 'ubuntu-18.04'
+    timeoutInMinutes: 4320 # job times out in 3 days
     steps:
-    - task: ManualValidation@0
-              |
+    - script: |
         # Cd to terraform folder.
         
         cd terraform/app
@@ -154,11 +154,6 @@ stages:
         # Apply the Terraform plan.
          terraform apply -input=false -auto-approve
 
-      timeoutInMinutes: 1440 # task times out in 1 day
-      inputs:
-          instructions: 'Check release number'
-          notifyUsers: 'chaminda_chandrasekara@yahoo.com'
-          onTimeout: reject
       name: 'RunTerraform'
       displayName: 'Run Terraform'
       env:
@@ -167,4 +162,3 @@ stages:
         TF_VAR_arm_tenant_id: $(ARM_TENANT_ID)
         TF_VAR_arm_subscription_id: $(ARM_SUBSCRIPTION_ID)
         TF_VAR_db_pass: $(DB_PASS)
-        #TF_VAR_registry_password: $(REGISTRY_PASSWORD)
