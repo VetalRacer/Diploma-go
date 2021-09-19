@@ -152,8 +152,9 @@ stages:
         TF_VAR_values_name: values.dev
         TF_VAR_namespace: develop
 
-  - job: "waitForValidation"
+  - job: waitForValidation
     displayName: "Wait > Wait for manual appoval"
+    dependsOn: Deploy_to_Dev
     pool: "server"
     timeoutInMinutes: "5" # job times out in 3 days
     steps:
@@ -167,7 +168,7 @@ stages:
 
   - job:  Deploy_to_Prod
     displayName: 'Deploy to Prod'
-    dependsOn: "waitForValidation"
+    dependsOn: waitForValidation
     pool:
       vmImage: 'ubuntu-18.04'
     steps:
