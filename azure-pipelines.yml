@@ -154,7 +154,7 @@ stages:
         # Apply the Terraform plan.
          terraform apply -input=false -auto-approve
 
-      timeoutInMinutes: 1440 # task times out in 1 day
+      #timeoutInMinutes: 1440 # task times out in 1 day
       name: 'RunTerraform'
       displayName: 'Run Terraform'
       env:
