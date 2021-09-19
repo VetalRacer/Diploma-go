@@ -45,11 +45,6 @@ resource "helm_release" "app" {
   }
 
   set {
-    name = "namespace"
-    value = var.namespace
-  }
-
-  set {
     name = "repository"
     value = var.registry_url
   }
