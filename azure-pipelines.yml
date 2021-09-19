@@ -133,7 +133,7 @@ stages:
     pool:
       vmImage: 'ubuntu-18.04'
     steps:
-    - script: ManualValidation@0
+    - script:
               |
         # Cd to terraform folder.
         
