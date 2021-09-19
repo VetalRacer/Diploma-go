@@ -134,26 +134,6 @@ stages:
       vmImage: 'ubuntu-18.04'
     steps:
     - script: ManualValidation@0
-              |
-        # Cd to terraform folder.
-        
-        cd terraform/app
-        export TF_VAR_tag=$(echo $BUILD_BUILDNUMBER)
-        printenv   
-        # Exit when any command returns a failure status.
-        set -e
-        # Write terraform.tfvars.
-        echo 'resource_group_location = "'$(ResourceGroupLocation)'"' | tee terraform-app.tfvars
-        # Write backend.tfvars.
-        echo 'resource_group_name = "tf-storage-rg"' | tee backend-app.tfvars
-        echo 'storage_account_name = "'$(StorageAccountName)'"' | tee -a backend-app.tfvars
-        echo 'container_name = "tfstate"' | tee -a backend-app.tfvars
-        echo 'key = "terraform.tfstate-app"' | tee -a backend-app.tfvars
-        # Initialize Terraform.
-        terraform init -input=false -backend-config="backend-app.tfvars"
-        # Apply the Terraform plan.
-         terraform apply -input=false -auto-approve
-
       timeoutInMinutes: 1440 # task times out in 1 day
       inputs:
           instructions: 'Check release number'
