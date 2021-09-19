@@ -133,14 +133,14 @@ stages:
         # Exit when any command returns a failure status.
         set -e
         # Write terraform.tfvars.
-        echo 'resource_group_location = "'$(ResourceGroupLocation)'"' | tee terraform-app.tfvars
+        echo 'resource_group_location = "'$(ResourceGroupLocation)'"' | tee terraform-app-dev.tfvars
         # Write backend.tfvars.
-        echo 'resource_group_name = "tf-storage-rg"' | tee backend-app.tfvars
-        echo 'storage_account_name = "'$(StorageAccountName)'"' | tee -a backend-app.tfvars
-        echo 'container_name = "tfstate"' | tee -a backend-app.tfvars
-        echo 'key = "terraform.tfstate-app"' | tee -a backend-app.tfvars
+        echo 'resource_group_name = "tf-storage-rg"' | tee backend-app-dev.tfvars
+        echo 'storage_account_name = "'$(StorageAccountName)'"' | tee -a backend-app-dev.tfvars
+        echo 'container_name = "tfstate"' | tee -a backend-app-dev.tfvars
+        echo 'key = "terraform.tfstate-app-dev"' | tee -a backend-app-dev.tfvars
         # Initialize Terraform.
-        terraform init -input=false -backend-config="backend-app.tfvars"
+        terraform init -input=false -backend-config="backend-app-dev.tfvars"
         # Apply the Terraform plan.
          terraform apply -input=false -auto-approve
 
@@ -180,14 +180,14 @@ stages:
         # Exit when any command returns a failure status.
         set -e
         # Write terraform.tfvars.
-        echo 'resource_group_location = "'$(ResourceGroupLocation)'"' | tee terraform-app.tfvars
+        echo 'resource_group_location = "'$(ResourceGroupLocation)'"' | tee terraform-app-prod.tfvars
         # Write backend.tfvars.
-        echo 'resource_group_name = "tf-storage-rg"' | tee backend-app.tfvars
-        echo 'storage_account_name = "'$(StorageAccountName)'"' | tee -a backend-app.tfvars
-        echo 'container_name = "tfstate"' | tee -a backend-app.tfvars
-        echo 'key = "terraform.tfstate-app"' | tee -a backend-app.tfvars
+        echo 'resource_group_name = "tf-storage-rg"' | tee backend-app-prod.tfvars
+        echo 'storage_account_name = "'$(StorageAccountName)'"' | tee -a backend-app-prod.tfvars
+        echo 'container_name = "tfstate"' | tee -a backend-app-prod.tfvars
+        echo 'key = "terraform.tfstate-app-prod"' | tee -a backend-app-prod.tfvars
         # Initialize Terraform.
-        terraform init -input=false -backend-config="backend-app.tfvars"
+        terraform init -input=false -backend-config="backend-app-prod.tfvars"
         # Apply the Terraform plan.
          terraform apply -input=false -auto-approve
 
