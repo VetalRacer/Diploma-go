@@ -29,7 +29,7 @@ provider "helm" {
 resource "helm_release" "app" {
   name       = "app"
   chart      = "../../deploy/helm-charts/app/nhl"
-  values     = [templatefile("../../deploy/helm-charts/app/nhl/${values.name}.yaml", {})]
+  values     = [templatefile("../../deploy/helm-charts/app/nhl/${var.values_name}.yaml", {})]
   namespace  = var.namespace
   reuse_values = "true"
   atomic = "true"
