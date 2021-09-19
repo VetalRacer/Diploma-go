@@ -69,8 +69,6 @@ stages:
       env:
         TF_VAR_arm_client_id: $(ARM_CLIENT_ID)
         TF_VAR_arm_client_secret: $(ARM_CLIENT_SECRET)
-        #TF_VAR_arm_tenant_id: $(ARM_TENANT_ID)
-        #TF_VAR_arm_subscription_id: $(ARM_SUBSCRIPTION_ID)
         TF_VAR_db_pass: $(DB_PASS)
         TF_VAR_registry_user: $(registryUser)
         TF_VAR_registry_url: $(registryUrl)
@@ -113,9 +111,6 @@ stages:
       name: 'RunTerraform'
       displayName: 'Run Terraform'
       env:
-        #TF_VAR_arm_client_id: $(ARM_CLIENT_ID)
-        #TF_VAR_arm_client_secret: $(ARM_CLIENT_SECRET)
-        #TF_VAR_arm_tenant_id: $(ARM_TENANT_ID)
         TF_VAR_arm_subscription_id: $(ARM_SUBSCRIPTION_ID)
 
 
@@ -126,10 +121,10 @@ stages:
   - job: "waitForValidation"
     displayName: "Wait > Wait for manual appoval"
     pool: "server"
-    timeoutInMinutes: "10" # job times out in 3 days
+    timeoutInMinutes: "2" # job times out in 3 days
     steps:
       - task: ManualValidation@0
-        timeoutInMinutes: "5" # task times out in 1 day
+        timeoutInMinutes: "1" # task times out in 1 day
         inputs:
           notifyUsers: |
                            vitalii_brazhaev@epam.com
@@ -141,6 +136,8 @@ stages:
     dependsOn: "waitForValidation"
     pool:
       vmImage: 'ubuntu-18.04'
+    variables:
+      namespace: develop
     steps:
     - script: |
         # Cd to terraform folder.
@@ -165,8 +162,5 @@ stages:
       name: 'RunTerraform'
       displayName: 'Run Terraform'
       env:
-        #TF_VAR_arm_client_id: $(ARM_CLIENT_ID)
-        #TF_VAR_arm_client_secret: $(ARM_CLIENT_SECRET)
-        #TF_VAR_arm_tenant_id: $(ARM_TENANT_ID)
-        #TF_VAR_arm_subscription_id: $(ARM_SUBSCRIPTION_ID)
         TF_VAR_db_pass: $(DB_PASS)
+        TF_VAR_namespace: $(namespace)
