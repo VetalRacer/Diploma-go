@@ -79,6 +79,7 @@ variable "db_pass" {
 }
 
 variable "tag" {}
+variables "namespace" {}
 variable "values_name" {}
 variable "registry_url" {
     description = "Azure Registry URL"
