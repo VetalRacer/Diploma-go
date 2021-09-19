@@ -11,7 +11,7 @@ resource "helm_release" "app" {
   name       = "kube-prometheus-stack"
   repository = "https://github.com/prometheus-community/helm-charts/tree/main/charts"
   chart      = "kube-prometheus-stack"
-  namespace  = monitoring
+  namespace  = "monitoring"
   #reuse_values = "true"
   #atomic = "true"
 }
