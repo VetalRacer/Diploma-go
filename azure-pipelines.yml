@@ -65,7 +65,7 @@ stages:
         printenv
 
         # Destroy the Terraform plan.
-        #terraform destroy -input=false -auto-approve
+        terraform destroy -input=false -auto-approve
 
       name: 'RunTerraform'
       displayName: 'Run Terraform'
@@ -131,10 +131,10 @@ stages:
   - job: "waitForValidation"
     displayName: "Wait > Wait for manual appoval"
     pool: "server"
-    timeoutInMinutes: "4320" # job times out in 3 days
+    timeoutInMinutes: "10" # job times out in 3 days
     steps:
       - task: ManualValidation@0
-        timeoutInMinutes: "1440" # task times out in 1 day
+        timeoutInMinutes: "5" # task times out in 1 day
         inputs:
           notifyUsers: |
                            vitalii_brazhaev@epam.com
