@@ -142,7 +142,9 @@ stages:
               
               cd terraform/app
               export TF_VAR_tag=$(echo $BUILD_BUILDNUMBER)
-              printenv   
+              printenv
+              pwd
+              ls -al   
               # Exit when any command returns a failure status.
               set -e
               # Write terraform.tfvars.
