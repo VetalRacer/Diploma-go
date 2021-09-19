@@ -4,10 +4,11 @@ variables:
   value: Release
 - name: registryUsername
   value: diplomaContainerRegistry
-- name: imageName
-  value: diplomacontainerregistry.azurecr.io/nhl
-- name: azureContainerRegistry
-  value: diplomacontainerregistry.azurecr.io
+#- name: imageName
+#  value: diplomacontainerregistry.azurecr.io/nhl
+
+variables:
+  azureContainerRegistry: diplomacontainerregistry.azurecr.io
 
 stages:
 - stage: 'infrastucture'
