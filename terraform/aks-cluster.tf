@@ -95,7 +95,7 @@ resource "kubernetes_secret" "dev-env" {
     ".dockerconfigjson" = <<DOCKER
 {
   "auths": {
-    "${var.registry_server}": {
+    "${var.registry_url}": {
       "auth": "${base64encode("${azurerm_container_registry.default.name}:${azurerm_container_registry.default.admin_password}")}"
     }
   }
