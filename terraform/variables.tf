@@ -7,14 +7,10 @@ variable "db_pass" {
   type        = string
 }
 
-#variable "registry_server" {
-#    default = "diplomacontainerregistry.azurecr.io"
-#}
-
 variable "registry_url" {
     description = "Azure Registry URL"
 }
 
-#variable "registry_user" {
-#    description = "Azure Registry user"
-#}
+variable "registry_user" {
+    description = "Azure Registry user"
+}
