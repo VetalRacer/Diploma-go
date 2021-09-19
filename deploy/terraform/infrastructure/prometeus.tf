@@ -9,7 +9,7 @@ provider "helm" {
 
 resource "helm_release" "app" {
   name       = "kube-prometheus-stack"
-  repository = "https://github.com/prometheus-community/helm-charts/tree/main/charts"
+  repository = "https://prometheus-community.github.io/helm-charts"
   chart      = "kube-prometheus-stack"
   namespace  = "monitoring"
   #reuse_values = "true"
