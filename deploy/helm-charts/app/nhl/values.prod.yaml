@@ -1,0 +1,20 @@
+name: nhl
+namespace: production
+replicas: 1
+
+port: 80
+
+image:
+  repository: diplomacontainerregistry.azurecr.io
+  imageName: nhl
+  tag: latest
+  pullPolicy: Always
+  imagePullSecret: artifactory
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+  requests:
+    cpu: 250m
+    memory: 256Mi
