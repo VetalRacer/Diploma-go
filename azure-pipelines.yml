@@ -2,13 +2,10 @@ variables:
 - group: Infrastructure
 - name: buildConfiguration 
   value: Release
-- name: registryUsername
+- name: registryUser
   value: diplomaContainerRegistry
-#- name: imageName
-#  value: diplomacontainerregistry.azurecr.io/nhl
-
-variables:
-  azureContainerRegistry: diplomacontainerregistry.azurecr.io
+- name: regisrtyUrl
+  value: diplomacontainerregistry.azurecr.io
 
 stages:
 - stage: 'infrastucture'
@@ -36,7 +33,7 @@ stages:
         # Initialize Terraform.
         terraform init -input=false
         # Apply the Terraform plan.
-         terraform apply -input=false -auto-approve
+        terraform apply -input=false -auto-approve
 
       condition: and(succeeded(), eq(variables.commitMessage, 'firstdeploy'))
 
@@ -66,7 +63,7 @@ stages:
         printenv
 
         # Destroy the Terraform plan.
-        terraform destroy -input=false -auto-approve
+        # terraform destroy -input=false -auto-approve
 
       name: 'RunTerraform'
       displayName: 'Run Terraform'
@@ -76,7 +73,9 @@ stages:
         TF_VAR_arm_tenant_id: $(ARM_TENANT_ID)
         TF_VAR_arm_subscription_id: $(ARM_SUBSCRIPTION_ID)
         TF_VAR_db_pass: $(DB_PASS)
-        TF_VAR_registry_password: $(REGISTRY_PASSWORD)
+        TF_VAR_registry_user: $(registryUser)
+        TF_VAR_registry_url: $(registryUrl)
+        #TF_VAR_registry_password: $(REGISTRY_PASSWORD)
 
 
 - stage: 'Build'
