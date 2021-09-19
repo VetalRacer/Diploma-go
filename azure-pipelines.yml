@@ -132,6 +132,7 @@ stages:
     displayName: 'Deploy to Dev'
     pool:
       vmImage: 'ubuntu-18.04'
+    environment: 'deploy'
     steps:
     - script: |
         # Cd to terraform folder.
