@@ -163,4 +163,5 @@ stages:
       displayName: 'Run Terraform'
       env:
         TF_VAR_db_pass: $(DB_PASS)
+        TF_VAR_registry_url: $(registryUrl)
         TF_VAR_namespace: $(namespace)
