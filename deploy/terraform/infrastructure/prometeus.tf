@@ -17,6 +17,7 @@ resource "helm_release" "prometeus" {
 }
 
 resource "helm_release" "cm" {
+  name       = "cm"
   chart      = "../../helm-charts/monitoring"
   #values     = [templatefile("../../helm-charts/app/nhl/${var.values_name}.yaml", {})]
   namespace  = "monitoring"
