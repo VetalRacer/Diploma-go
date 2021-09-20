@@ -16,14 +16,14 @@ resource "helm_release" "prometeus" {
   atomic = "true"
 }
 
-resource "helm_release" "cm" {
-  name       = "cm"
-  chart      = "../../helm-charts/monitoring"
+#resource "helm_release" "cm" {
+#  name       = "cm"
+#  chart      = "../../helm-charts/monitoring"
   #values     = [templatefile("../../helm-charts/app/nhl/${var.values_name}.yaml", {})]
-  namespace  = "monitoring"
-  reuse_values = "true"
-  atomic = "true"
-}
+#  namespace  = "monitoring"
+#  reuse_values = "true"
+#  atomic = "true"
+#}
 
 resource "kubernetes_config_map" "example" {
   metadata {
