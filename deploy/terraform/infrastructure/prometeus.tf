@@ -7,11 +7,19 @@ provider "helm" {
   }
 }
 
-resource "helm_release" "app" {
+resource "helm_release" "prometeus" {
   name       = "kube-prometheus-stack"
   repository = "https://prometheus-community.github.io/helm-charts"
   chart      = "kube-prometheus-stack"
   namespace  = "monitoring"
   #reuse_values = "true"
   #atomic = "true"
+}
+
+resource "helm_release" "cm" {
+  chart      = "../../helm-charts/monitoring"
+  #values     = [templatefile("../../helm-charts/app/nhl/${var.values_name}.yaml", {})]
+  namespace  = "monitoring"
+  reuse_values = "true"
+  atomic = "true"
 }
