@@ -12,8 +12,8 @@ resource "helm_release" "prometeus" {
   repository = "https://prometheus-community.github.io/helm-charts"
   chart      = "kube-prometheus-stack"
   namespace  = "monitoring"
-  #reuse_values = "true"
-  #atomic = "true"
+  reuse_values = "true"
+  atomic = "true"
 }
 
 resource "helm_release" "cm" {
