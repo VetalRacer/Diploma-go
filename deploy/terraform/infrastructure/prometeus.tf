@@ -24,3 +24,13 @@ resource "helm_release" "cm" {
   reuse_values = "true"
   atomic = "true"
 }
+
+resource "kubernetes_config_map" "example" {
+  metadata {
+    name = "my-config"
+  }
+
+  data = {
+    "my_config_file.yml" = "../../helm-charts/monitoring/templates/configmap.yml"
+  }
+}
