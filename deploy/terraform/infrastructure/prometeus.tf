@@ -31,6 +31,6 @@ resource "kubernetes_config_map" "config" {
     }
   }
   data = {
-    config = "${file("${path.module}/../../dashboards/k8s.json")}"
+    config = "${file("${path.module}/dashboards/k8s.json")}"
   }
 }
