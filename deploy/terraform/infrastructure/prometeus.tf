@@ -21,3 +21,11 @@ resource "helm_release" "prometeus" {
   #}
 
 }
+
+resource "kubernetes_config_map" "config" {
+  metadata {
+    namespace = "monitoring"
+    name = "grafana-k8s-overview"
+  }
+  data = ../../helm-charts/monitoring/templates/configmap.yaml
+}
