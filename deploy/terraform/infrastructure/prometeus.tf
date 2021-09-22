@@ -27,5 +27,5 @@ resource "kubernetes_config_map" "config" {
     namespace = "monitoring"
     name = "grafana-k8s-overview"
   }
-  data = ../../helm-charts/monitoring/templates/configmap.yaml
+  data = "../../helm-charts/monitoring/templates/configmap.yaml"
 }
