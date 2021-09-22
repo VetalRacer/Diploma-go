@@ -15,10 +15,10 @@ resource "helm_release" "prometeus" {
   reuse_values = "true"
   atomic = "true"
 
-  #set {
-  #  name  = "sidecar.dashboards.enabled"
-  #  value = "true"
-  #}
+  set {
+    name  = "sidecar.dashboards.enabled"
+    value = "true"
+  }
 
 }
 
