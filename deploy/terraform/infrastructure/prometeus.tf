@@ -14,4 +14,10 @@ resource "helm_release" "prometeus" {
   namespace  = "monitoring"
   reuse_values = "true"
   atomic = "true"
+
+  set {
+    name  = "sidecar.dashboards.enabled"
+    value = "true"
+  }
+
 }
