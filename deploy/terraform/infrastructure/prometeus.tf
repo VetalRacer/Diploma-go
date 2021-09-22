@@ -28,6 +28,6 @@ resource "kubernetes_config_map" "config" {
     name = "grafana-k8s-overview"
   }
   data {
-    "config" = "${file(${path.module}/k8s.json)}"
+    "config" = "file(${path.module}/k8s.json)"
   }
 }
