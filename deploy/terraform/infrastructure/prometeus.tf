@@ -26,6 +26,7 @@ resource "kubernetes_config_map" "config" {
   metadata {
     namespace = "monitoring"
     name = "grafana-k8s-overview"
+    labels = "k8s-overview"
   }
   data = {
     config = "${file("${path.module}/k8s.json")}"
