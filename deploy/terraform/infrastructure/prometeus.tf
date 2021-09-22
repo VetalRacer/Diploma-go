@@ -27,7 +27,7 @@ resource "kubernetes_config_map" "config" {
     namespace = "monitoring"
     name = "grafana-k8s-overview"
     labels = {
-      grafana_dashboard = k8s-overview
+      grafana_dashboard = "k8s-overview"
     }
   }
   data = {
