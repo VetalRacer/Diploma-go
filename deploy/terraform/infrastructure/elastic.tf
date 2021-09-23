@@ -5,7 +5,18 @@ resource "helm_release" "elasticsearch" {
   namespace  = "logging"
   version = "7.14.0"
   reuse_values = "true"
-  atomic = "true" 
+  atomic = "true"
+
+  set {
+    name  = "inimumMasterNodes"
+    value = "1"
+  }
+
+  set {
+    name  = "replicas"
+    value = "2"
+  }
+
 }
 
 #resource "kubernetes_config_map" "config" {
