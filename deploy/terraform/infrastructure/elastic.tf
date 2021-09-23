@@ -8,7 +8,7 @@ resource "helm_release" "elasticsearch" {
   atomic = "true"
 
   set {
-    name  = "inimumMasterNodes"
+    name  = "minimumMasterNodes"
     value = "1"
   }
 
