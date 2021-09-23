@@ -14,7 +14,7 @@ resource "helm_release" "elasticsearch" {
 
   set {
     name  = "replicas"
-    value = "1"
+    value = "2"
   }
 
 }
