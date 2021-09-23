@@ -1,6 +1,6 @@
 resource "helm_release" "elasticsearch" {
   name       = "elasticsearch"
-  repository = "https://github.com/elastic/helm-charts"
+  repository = "https://helm.elastic.co"
   chart      = "elasticsearch"
   namespace  = "logging"
   reuse_values = "true"
