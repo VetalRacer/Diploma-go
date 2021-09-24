@@ -9,12 +9,12 @@ resource "helm_release" "elasticsearch" {
 
   set {
     name  = "minimumMasterNodes"
-    value = "1"
+    value = "0"
   }
 
   set {
     name  = "replicas"
-    value = "2"
+    value = "1"
   }
 
 }
