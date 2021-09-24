@@ -19,15 +19,15 @@ resource "helm_release" "elasticsearch" {
 
 }
 
-#resource "helm_release" "kibana" {
-#  name       = "kibana"
-#  repository = "https://helm.elastic.co"
-#  chart      = "kibana"
-#  namespace  = "logging"
-#  version = "7.14.0"
-#  reuse_values = "true"
-#  atomic = "true"
-#}
+resource "helm_release" "kibana" {
+  name       = "kibana"
+  repository = "https://helm.elastic.co"
+  chart      = "kibana"
+  namespace  = "logging"
+  version = "7.14.0"
+  reuse_values = "true"
+  atomic = "true"
+}
 
 
 
