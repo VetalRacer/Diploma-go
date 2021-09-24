@@ -29,6 +29,16 @@ resource "helm_release" "kibana" {
   atomic = "true"
 }
 
+resource "helm_release" "logstash" {
+  name       = "logstash"
+  repository = "https://helm.elastic.co"
+  chart      = "logstash"
+  namespace  = "logging"
+  version = "7.14.0"
+  reuse_values = "true"
+  atomic = "true"
+}
+
 
 
 
