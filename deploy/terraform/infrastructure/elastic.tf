@@ -39,7 +39,15 @@ resource "helm_release" "logstash" {
   atomic = "true"
 }
 
-
+resource "helm_release" "filebeat" {
+  name       = "filebeat"
+  repository = "https://helm.elastic.co"
+  chart      = "filebeat"
+  namespace  = "logging"
+  version = "7.14.0"
+  reuse_values = "true"
+  atomic = "true"
+}
 
 
 
