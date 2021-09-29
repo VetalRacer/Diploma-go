@@ -43,7 +43,7 @@ resource "helm_release" "filebeat" {
   name       = "filebeat"
   repository = "https://helm.elastic.co"
   chart      = "filebeat"
-  values     = [templatefile("dashboards/fb.yml", {})]
+  values     = [templatefile("dashboards/fb.yml")]
   namespace  = "logging"
   version = "7.14.0"
   reuse_values = "true"
