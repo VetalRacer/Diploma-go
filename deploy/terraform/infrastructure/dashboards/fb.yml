@@ -9,7 +9,7 @@ daemonset:
           - /var/log/containers/nhl*.log
         processors:
         - add_kubernetes_metadata:
-            host: "${NODE_NAME}"
+            host: 
             matchers:
             - logs_path:
                 logs_path: "/var/log/containers/"
