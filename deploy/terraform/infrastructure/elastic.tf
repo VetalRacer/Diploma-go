@@ -47,8 +47,27 @@ resource "helm_release" "filebeat" {
   version = "7.14.0"
   reuse_values = "true"
   atomic = "true"
-}
 
+  set {
+    name  = "filebeatConfig"
+    value = " filebeatConfig:
+    filebeat.yml: |
+      filebeat.inputs:
+      - type: container
+        paths:
+          - /var/log/containers/*.log
+        processors:
+        - add_kubernetes_metadata:
+            host: ${NODE_NAME}
+            matchers:
+            - logs_path:
+                logs_path: "/var/log/containers/"
+      output.elasticsearch:
+        host: '${NODE_NAME}'
+        hosts: '${ELASTICSEARCH_HOSTS:elasticsearch-master:9200}'"
+  }
+
+}
 
 
 
