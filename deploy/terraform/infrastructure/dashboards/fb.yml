@@ -2,7 +2,7 @@
 daemonset:
   # such as filebeat.yml for daemonset
   filebeatConfig:
-    filebeat.yml: |
+    filebeat.yml: |-
       filebeat.inputs:
       - type: container
         paths:
