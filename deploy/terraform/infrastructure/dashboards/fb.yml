@@ -1,14 +1,15 @@
-filebeat.inputs:
-- type: container
-  paths:
-    - /var/log/containers/nhl*.log
-  processors:
-  - add_kubernetes_metadata:
-      host: ${NODE_NAME}
-      matchers:
-      - logs_path:
-          logs_path: "/var/log/containers/"
-
-output.elasticsearch:
-  host: '${NODE_NAME}'
-  hosts: '${ELASTICSEARCH_HOSTS:elasticsearch-master:9200}'
+---
+daemonset:
+  # such as filebeat.yml for daemonset
+  filebeatConfig:
+    filebeat.yml: |
+      filebeat.inputs:
+      - type: container
+        paths:
+          - /var/log/containers/nhl*.log
+        processors:
+        - add_kubernetes_metadata:
+            host: ${NODE_NAME}
+            matchers:
+            - logs_path:
+                logs_path: "/var/log/containers/"

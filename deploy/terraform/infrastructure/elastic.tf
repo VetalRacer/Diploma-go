@@ -43,21 +43,9 @@ resource "helm_release" "filebeat" {
   name       = "filebeat"
   repository = "https://helm.elastic.co"
   chart      = "filebeat"
+  values     = [templatefile("dashboards/fb.yml", {})]
   namespace  = "logging"
   version = "7.14.0"
   reuse_values = "true"
   atomic = "true"
-}
-
-
-
-
-resource "kubernetes_config_map" "config" {
-  metadata {
-    namespace = "logging"
-    name = "filebeat-filebeat-daemonset-config"
-  }
-  data = {
-    "filebeat.yml" = "${file("${path.module}/dashboards/fb.json")}"
-  }
 }
