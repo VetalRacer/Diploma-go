@@ -47,26 +47,17 @@ resource "helm_release" "filebeat" {
   version = "7.14.0"
   reuse_values = "true"
   atomic = "true"
-
-  set {
-    name  = "filebeatConfig.filebeat\.yml.filebeat\.inputs.paths"
-    value = "- /var/log/containers/nhl*.log"
-  }
-
 }
 
 
 
 
-#resource "kubernetes_config_map" "config" {
-#  metadata {
-#    namespace = "logging"
-#    name = "grafana-k8s-overview"
-#    labels = {
-#      grafana_dashboard = "k8s-overview"
-#    }
-#  }
-#  data = {
-#    "k8s.json" = "${file("${path.module}/dashboards/k8s.json")}"
-#  }
-#}
+resource "kubernetes_config_map" "config" {
+  metadata {
+    namespace = "logging"
+    name = "filebeat-filebeat-daemonset-config"
+  }
+  data = {
+    "filebeat.yml" = "${file("${path.module}/dashboards/fb.json")}"
+  }
+}
