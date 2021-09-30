@@ -106,6 +106,15 @@ stages:
           -Dsonar.host.url=http://20.50.49.188:9000 \
           -Dsonar.login=0cac1b53bd68e2d758d0ddb429e84b539d70c210 \
           -Dsonar.qualitygate.wait=true
+
+      
+        if ("$PERFSPEC_RESULT" -eq "fail" -Or "$PERFSPEC_RESULT" -eq "error") { 
+          Write-Host "Failed the quality gate"  
+          exit 1 
+        } else { 
+          Write-Host "Passed the quality gate"  
+        }
+         
       name: 'test'
       displayName: 'test'
 
