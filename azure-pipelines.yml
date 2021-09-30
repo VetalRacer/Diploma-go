@@ -97,7 +97,7 @@ stages:
 
         export PATH="$PATH:/opt/sonar-scanner/bin"
 
-        sonar-scanner -v
+        echo "START CODE SCAN"
 
       
         sonar-scanner \
