@@ -84,9 +84,6 @@ stages:
     steps:
     - script: |
 
-        apt-get update
-        apt-get install unzip wget nodejs
-
         mkdir /downloads/sonarqube -p
         cd /downloads/sonarqube
         wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.2.0.1873-linux.zip
@@ -107,14 +104,15 @@ stages:
           -Dsonar.login=0cac1b53bd68e2d758d0ddb429e84b539d70c210 \
           -Dsonar.qualitygate.wait=true
 
-      
-        if ("$PERFSPEC_RESULT" -eq "fail" -Or "$PERFSPEC_RESULT" -eq "error") { 
-          Write-Host "Failed the quality gate"  
-          exit 1 
-        } else { 
-          Write-Host "Passed the quality gate"  
-        }
-         
+        echo $PERFSPEC_RESULT
+
+        #if ("$PERFSPEC_RESULT" -eq "fail" -Or "$PERFSPEC_RESULT" -eq "error") {
+        #  echo "Failed the quality gate"  
+        #  exit 1 
+        #} else { 
+        #  echo "Passed the quality gate"  
+        #}
+
       name: 'test'
       displayName: 'test'
 
