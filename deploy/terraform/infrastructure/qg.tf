@@ -3,7 +3,7 @@ resource "helm_release" "sonarqube" {
   repository = "https://oteemo.github.io/charts"
   chart      = "sonarqube"
   namespace  = "qgate"
-  version = "7.14.0"
+  version = "9.8.2"
   reuse_values = "true"
   atomic = "true"
 }
