@@ -73,6 +73,31 @@ stages:
         TF_VAR_registry_user: $(registryUser)
         TF_VAR_registry_url: $(registryUrl)
 
+- stage: 'SonarQube'
+  displayName: 'SonarQube'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/terraform'))
+  jobs:
+  - job: Test_Code
+    displayName: 'Test Code'
+    pool:
+      vmImage: 'ubuntu-18.04'
+    steps:
+    # Prepare Analysis Configuration task
+    - task: SonarQubePrepare@4
+      inputs:
+        SonarQube: 'http://20.50.49.188:9000'
+        scannerMode: 'CLI'
+        configMode: 'manual'
+        cliProjectKey: 'Diploma-go'
+
+    # Run Code Analysis task
+    - task: SonarQubeAnalyze@4
+
+    # Publish Quality Gate Result task
+    - task: SonarQubePublish@4
+      inputs:
+        pollingTimeoutSec: '300'
+
 - stage: 'Build'
   displayName: 'Build application'
   condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/terraform'), eq(variables['Build.SourceBranch'], 'refs/heads/develop')))
