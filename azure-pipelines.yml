@@ -75,7 +75,7 @@ stages:
 
 - stage: 'SonarQube'
   displayName: 'SonarQube'
-  condition: and(eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
   jobs:
   - job: Test_Code
     displayName: 'Test Code'
