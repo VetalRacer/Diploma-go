@@ -1,9 +1,6 @@
-# Trigger builds on commits to branches
 trigger:
   - test_pipeline
 
-# Do not trigger builds on PRs
-pr: none
 
 variables:
 - group: Infrastructure
@@ -14,6 +11,7 @@ variables:
 - name: regisrtyUrl
   value: diplomacontainerregistry.azurecr.io
 
-extends:
-  template: pipeline-shared.yml
-  template: test.yml
+
+stages:
+- template: pipeline-shared.yml
+- template: test.yml
