@@ -13,5 +13,6 @@ variables:
 
 
 stages:
-- template: pipeline-shared.yml
-- template: test.yml
+- template: deploy/pipeline-stages/infrastructure.yml
+- template: deploy/pipeline-stages/build.yml
+- template: deploy/pipeline-stages/deploy.yml
