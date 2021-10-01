@@ -84,9 +84,7 @@ stages:
 
 - stage: 'SonarQube'
   displayName: 'SonarQube'
-  trigger: 
-  - develop
-  #condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
+  condition: contains(variables['build.sourceBranch'], 'refs/heads/develop')
   jobs:
   - job: Test_Code
     displayName: 'Test Code'
