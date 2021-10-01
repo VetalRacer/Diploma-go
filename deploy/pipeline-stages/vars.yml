@@ -1,0 +1,8 @@
+variables:
+- group: Infrastructure
+- name: buildConfiguration 
+  value: Release
+- name: registryUser
+  value: diplomaContainerRegistry
+- name: regisrtyUrl
+  value: diplomacontainerregistry.azurecr.io
