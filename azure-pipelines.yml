@@ -1,8 +1,9 @@
-resources:
-  pipelines:
-  - pipeline: security-lib
-    source: security-lib-ci
-    trigger: 
-      branches:
-      - releases/*
-      - master
+# Trigger builds on commits to branches
+trigger:
+  - dev
+
+# Do not trigger builds on PRs
+pr: none
+
+extends:
+  template: pipeline-shared.yml
