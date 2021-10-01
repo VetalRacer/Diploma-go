@@ -5,7 +5,7 @@ trigger:
 variables:
 - template: deploy/pipeline-stages/vars.yml
 
-- ${{ if eq(variables['build.SourceBranchName'], 'test_pipline') }}:
+- ${{ if eq(variables['build.SourceBranchName'], 'test_pipeline') }}:
 stages:
 - template: deploy/pipeline-stages/infrastructure.yml
 - template: deploy/pipeline-stages/quality-gates.yml
