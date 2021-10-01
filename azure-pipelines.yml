@@ -1,11 +1,11 @@
 trigger:
-      branches:
-        include:
-        - develop
-        exclude:
-        - topic/*
-      stages:
-      - SonarQube
+  branches:
+    include:
+    - develop
+    exclude:
+    - topic/*
+  stages:
+  - SonarQube
 
 variables:
 - group: Infrastructure
