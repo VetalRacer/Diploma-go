@@ -4,6 +4,8 @@ replicas: 1
 
 port: 80
 
+db_name: nhl_prod
+
 image:
   repository: diplomacontainerregistry.azurecr.io
   imageName: nhl

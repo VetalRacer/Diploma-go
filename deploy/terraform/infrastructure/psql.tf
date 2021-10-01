@@ -19,8 +19,16 @@ resource "azurerm_postgresql_server" "default" {
   ssl_minimal_tls_version_enforced = "TLS1_2"
 }
 
-resource "azurerm_postgresql_database" "default" {
-  name                = "nhl"
+resource "azurerm_postgresql_database" "dev" {
+  name                = "nhl_dev"
+  resource_group_name = azurerm_resource_group.default.name
+  server_name         = azurerm_postgresql_server.default.name
+  charset             = "UTF8"
+  collation           = "English_United States.1252"
+}
+
+resource "azurerm_postgresql_database" "prod" {
+  name                = "nhl_prod"
   resource_group_name = azurerm_resource_group.default.name
   server_name         = azurerm_postgresql_server.default.name
   charset             = "UTF8"
