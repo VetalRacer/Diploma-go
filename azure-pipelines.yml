@@ -1,6 +1,6 @@
 # Trigger builds on commits to branches
 trigger:
-  - dev
+  - test_pipeline
 
 # Do not trigger builds on PRs
 pr: none
