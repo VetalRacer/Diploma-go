@@ -107,7 +107,7 @@ stages:
 
 - stage: 'Build'
   displayName: 'Build application'
-  condition: contains(variables['build.sourceBranch'], 'refs/heads/terraform')
+  condition: startsWith(variables['build.sourceBranch'], 'refs/heads/terraform')
   #condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/terraform'), eq(variables['Build.SourceBranch'], 'refs/heads/develop')))
   jobs:
   - job: Build_Image
@@ -149,7 +149,7 @@ stages:
 
 - stage: 'Deploy_App'
   displayName: 'Deploy App'
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/terraform'))
+  condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/heads/terraform'))
   jobs:
 
   - job:  Deploy_to_Dev
