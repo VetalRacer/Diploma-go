@@ -1,7 +1,7 @@
 stages:
 - stage: 'SonarQube'
   displayName: 'SonarQube'
-  condition: contains(variables['build.sourceBranch'], 'refs/heads/develop')
+  condition: succeeded()
   jobs:
   - job: Test_Code
     displayName: 'Test Code'

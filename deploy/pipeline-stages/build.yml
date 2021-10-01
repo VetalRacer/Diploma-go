@@ -1,8 +1,7 @@
 stages:
 - stage: 'Build'
   displayName: 'Build application'
-  condition: startsWith(variables['build.sourceBranch'], 'refs/heads/terraform')
-  #condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/terraform'), eq(variables['Build.SourceBranch'], 'refs/heads/develop')))
+  condition: succeeded()
   jobs:
   - job: Build_Image
     displayName: 'Build job image'

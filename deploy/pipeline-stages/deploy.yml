@@ -1,7 +1,7 @@
 stages:
 - stage: 'Deploy_App'
   displayName: 'Deploy App'
-  condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/heads/terraform'))
+  condition: succeeded()
   jobs:
 
   - job:  Deploy_to_Dev
