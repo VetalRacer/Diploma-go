@@ -59,10 +59,10 @@ stages:
         # Initialize Terraform.
         terraform init -input=false -backend-config="backend.tfvars"
         # Apply the Terraform plan.
-        #terraform apply -input=false -auto-approve
+        terraform apply -input=false -auto-approve
 
         # Destroy the Terraform plan.
-        terraform destroy -input=false -auto-approve
+        #terraform destroy -input=false -auto-approve
 
       name: 'RunTerraform'
       displayName: 'Run Terraform'
@@ -75,7 +75,7 @@ stages:
 
 - stage: 'SonarQube'
   displayName: 'SonarQube'
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/terraform1'))
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
   jobs:
   - job: Test_Code
     displayName: 'Test Code'
