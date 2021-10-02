@@ -51,7 +51,7 @@ stages:
         terraform init -input=false -backend-config="backend.tfvars"
         
         # Apply the Terraform plan.
-        terraform destroy -input=false -auto-approve
+        terraform apply -input=false -auto-approve
 
       name: 'RunTerraform'
       displayName: 'Run Terraform'
