@@ -49,6 +49,7 @@ stages:
         echo 'key = "terraform.tfstate"' | tee -a backend.tfvars
         # Initialize Terraform.
         terraform init -input=false -backend-config="backend.tfvars"
+        
         # Apply the Terraform plan.
         terraform apply -input=false -auto-approve
 
