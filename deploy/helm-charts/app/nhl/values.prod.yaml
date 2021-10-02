@@ -4,7 +4,10 @@ replicas: 1
 
 port: 80
 
-db_name: nhl_prod
+db_config:
+  host: diploma-psqlserver.postgres.database.azure.com
+  login: psqladminun@diploma-psqlserver
+  name: nhl_prod
 
 image:
   repository: diplomacontainerregistry.azurecr.io
