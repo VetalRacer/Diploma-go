@@ -84,6 +84,17 @@ resource "kubernetes_namespace" "qgate-env" {
   }
 }
 
+resource "kubernetes_namespace" "nginx-ingress" {
+  metadata {
+    annotations = {
+      name = "nginx-ingress"
+    }
+
+    name = "nginx-ingress"
+  }
+}
+
+
 
 resource "kubernetes_secret" "dev-env" {
   metadata {
