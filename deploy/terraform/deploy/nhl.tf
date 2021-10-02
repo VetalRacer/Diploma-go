@@ -35,7 +35,7 @@ resource "helm_release" "app" {
   atomic = "true"
 
   set {
-    name  = "db_pass"
+    name  = "db_config.pass"
     value = "${base64encode("${var.db_pass}")}"
   }
 
