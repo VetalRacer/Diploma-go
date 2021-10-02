@@ -5,4 +5,9 @@ resource "helm_release" "ingress-controller" {
   namespace  = "nginx-ingress"
   reuse_values = "true"
   atomic = "true"
+
+  set {
+    name  = "controller.service.loadBalancerIP"
+    value = "20.75.201.150"
+  }
 }
