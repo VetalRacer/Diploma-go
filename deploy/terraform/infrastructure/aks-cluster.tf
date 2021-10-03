@@ -128,8 +128,8 @@ resource "azurerm_public_ip" "default" {
 
 resource "azurerm_lb" "default" {
   name                = "test"
-  resource_group_name = azurerm_kubernetes_cluster.default.name
-  location            = azurerm_kubernetes_cluster.default.location
+  resource_group_name = azurerm_resource_group.default.name
+  location            = azurerm_resource_group.default.location
 
   frontend_ip_configuration {
     name                 = "nginx-ingress-controller"
