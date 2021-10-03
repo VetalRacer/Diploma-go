@@ -9,6 +9,6 @@ resource "helm_release" "ingress-controller" {
 
   set {
     name  = "controller.service.loadBalancerIP"
-    value = "20.76.245.249"
+    value = "20.76.146.233"
   }
 }
