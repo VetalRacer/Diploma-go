@@ -1,3 +1,0 @@
----
-controller.service.annotations:
-  service.beta.kubernetes.io/azure-load-balancer-resource-group: tf-storage-rg
