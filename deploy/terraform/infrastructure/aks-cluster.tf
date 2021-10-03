@@ -41,10 +41,12 @@ resource "azurerm_kubernetes_cluster" "default" {
   }
 
   network_profile {
-        load_balancer_profile {
-            outbound_ip_address_ids = [ azurerm_public_ip.default.id ]
+    network_plugin    = "kubenet"
+    load_balancer_sku = "Standard"
+    load_balancer_profile {
+      outbound_ip_address_ids = [ azurerm_public_ip.default.id ]
 
-        }
+    }
   }
 }
 
