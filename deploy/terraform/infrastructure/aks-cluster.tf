@@ -45,6 +45,7 @@ resource "azurerm_kubernetes_cluster" "default" {
             outbound_ip_address_ids = [ azurerm_public_ip.default.id ]
 
         }
+  }
 }
 
 resource "kubernetes_namespace" "prod-env" {
