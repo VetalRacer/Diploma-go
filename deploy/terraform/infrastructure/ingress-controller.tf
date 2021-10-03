@@ -12,7 +12,9 @@ resource "helm_release" "ingress-controller" {
   }
 
   set {
-    name  = "controller.service.annotations"
-    value = "service.beta.kubernetes.io/azure-load-balancer-resource-group: Diploma-rg"
+    name  = ""controller.service.annotations\\.ervice.beta.kubernetes.io/azure-load-balancer-resource-group"
+    value = "Diploma-rg"
+    type  = "string"
   }
+
 }
