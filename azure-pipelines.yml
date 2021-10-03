@@ -6,7 +6,4 @@ variables:
 - template: deploy/pipeline-stages/vars.yml
 
 stages:
-- template: deploy/pipeline-stages/infrastructure.yml
-#- template: deploy/pipeline-stages/quality-gates.yml
-- template: deploy/pipeline-stages/build.yml
-- template: deploy/pipeline-stages/deploy.yml
+- template: deploy/pipeline-stages/infrastructure-destroy.yml
