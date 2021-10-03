@@ -6,8 +6,8 @@ resource "helm_release" "ingress-controller" {
   reuse_values = "true"
   atomic = "true"
 
-  #set {
-  #  name  = "controller.service.loadBalancerIP"
-  #  value = "20.93.255.151"
-  #}
+  set {
+    name  = "controller.service.loadBalancerIP"
+    value = "20.105.199.211"
+  }
 }
