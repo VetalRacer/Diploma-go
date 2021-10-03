@@ -127,7 +127,7 @@ resource "azurerm_public_ip" "default" {
 }
 
 resource "azurerm_lb" "default" {
-  name                = "kubernetes"
+  name                = "test"
   resource_group_name = azurerm_kubernetes_cluster.default.name
   location            = azurerm_kubernetes_cluster.default.location
 
