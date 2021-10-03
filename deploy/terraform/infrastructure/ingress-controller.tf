@@ -9,7 +9,7 @@ resource "helm_release" "ingress-controller" {
 
   set {
     name  = "controller.service.loadBalancerIP"
-    value = "20.76.232.143"
+    value = azurerm_public_ip.default.ip_address
   }
 
  set {
