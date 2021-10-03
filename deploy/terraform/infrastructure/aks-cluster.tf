@@ -7,6 +7,13 @@ resource "azurerm_resource_group" "default" {
   }
 }
 
+resource "azurerm_public_ip" "default" {
+  name                = "nginx-ingress-controller"
+  resource_group_name = azurerm_resource_group.default.name
+  location            = azurerm_resource_group.default.location
+  allocation_method   = "Static"
+}
+
 resource "azurerm_kubernetes_cluster" "default" {
   name                = "Diploma-aks"
   location            = azurerm_resource_group.default.location
@@ -31,7 +38,13 @@ resource "azurerm_kubernetes_cluster" "default" {
 
   tags = {
     environment = "Diploma"
-  }  
+  }
+
+  network_profile {
+        load_balancer_profile {
+            outbound_ip_address_ids = [ azurerm_public_ip.default.id ]
+
+        }
 }
 
 resource "kubernetes_namespace" "prod-env" {
@@ -115,24 +128,4 @@ DOCKER
   }
 
   type = "kubernetes.io/dockerconfigjson"
-}
-
-
-
-resource "azurerm_public_ip" "default" {
-  name                = "nginx-ingress-controller"
-  resource_group_name = azurerm_resource_group.default.name
-  location            = azurerm_resource_group.default.location
-  allocation_method   = "Static"
-}
-
-resource "azurerm_lb" "default" {
-  name                = "test"
-  resource_group_name = azurerm_resource_group.default.name
-  location            = azurerm_resource_group.default.location
-
-  frontend_ip_configuration {
-    name                 = "nginx-ingress-controller"
-    public_ip_address_id = azurerm_public_ip.default.id
-  }
 }
