@@ -10,4 +10,9 @@ resource "helm_release" "ingress-controller" {
     name  = "controller.service.loadBalancerIP"
     value = "20.76.245.249"
   }
+
+  set {
+    name  = "controller.service.annotations"
+    value = "service.beta.kubernetes.io/azure-load-balancer-resource-group: Diploma-rg"
+  }
 }
