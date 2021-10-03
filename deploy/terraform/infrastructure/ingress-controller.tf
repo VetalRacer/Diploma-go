@@ -14,7 +14,7 @@ resource "helm_release" "ingress-controller" {
 
  set {
     name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/azure-load-balancer-resource-group"
-    value = "tf-storage-rg"
+    value = "Diploma-rg"
   }
 
 }
