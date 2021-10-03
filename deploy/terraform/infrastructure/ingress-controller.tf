@@ -11,4 +11,10 @@ resource "helm_release" "ingress-controller" {
     name  = "controller.service.loadBalancerIP"
     value = "20.76.232.143"
   }
+
+ set {
+    name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/azure-load-balancer-resource-group"
+    value = "tf-storage-rg"
+  }
+
 }
