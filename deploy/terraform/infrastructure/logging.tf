@@ -34,6 +34,11 @@ resource "helm_release" "kibana" {
   }
 
   set {
+    name  = "ingress.annotations.kubernetes\\.io/ingress\\.class"
+    value = "nginx"
+  }
+
+  set {
     name  = "ingress.hosts[0].host"
     value = "kibana.hgest.ru"
   }
@@ -42,7 +47,6 @@ resource "helm_release" "kibana" {
     name  = "ingress.hosts[0].paths[0].path"
     value = "/"
   }
-
 }
 
 resource "helm_release" "logstash" {
