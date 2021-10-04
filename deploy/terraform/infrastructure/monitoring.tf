@@ -30,7 +30,6 @@ resource "kubernetes_ingress" "grafana_ingress" {
       "kubernetes.io/ingress.class" = "nginx"
       "meta.helm.sh/release-name" = "app"
       "meta.helm.sh/release-namespace" = "develop"
-      "nginx.ingress.kubernetes.io/configuration-snippet" = "more_set_headers "Server: ";"
       "nginx.ingress.kubernetes.io/proxy-body-size" = "15m"
       "nginx.ingress.kubernetes.io/proxy-buffer-size" = "16k"
       "nginx.ingress.kubernetes.io/ssl-ciphers" = "ALL:!aNULL:!EXPORT56:RC4+RSA:+HIGH"
