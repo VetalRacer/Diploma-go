@@ -33,10 +33,15 @@ resource "helm_release" "kibana" {
     value = "true"
   }
 
-  #set {
-  # name  = "ingress.hosts[0].host"
-  #  value = "kibana.hgest.ru"
-  #}
+  set {
+    name  = "ingress.hosts[0].host"
+    value = "kibana.hgest.ru"
+  }
+
+  set {
+    name  = "ingress.hosts[0].paths[0].path"
+    value = "/"
+  }
 
 }
 
