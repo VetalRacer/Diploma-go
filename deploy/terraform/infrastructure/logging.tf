@@ -27,6 +27,17 @@ resource "helm_release" "kibana" {
   version = "7.14.0"
   reuse_values = "true"
   atomic = "true"
+
+  set {
+    name  = "ingress.enabled"
+    value = "true"
+  }
+
+  set {
+    name  = "ingress.hosts.host"
+    value = "kibana.hgest.ru"
+  }
+
 }
 
 resource "helm_release" "logstash" {
