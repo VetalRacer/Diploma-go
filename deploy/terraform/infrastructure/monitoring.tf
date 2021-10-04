@@ -23,6 +23,7 @@ resource "kubernetes_config_map" "config" {
 
 resource "kubernetes_ingress" "grafana_ingress" {
   metadata {
+    namespace = "monitoring"
     name = "grafana-ingress"
   }
 
