@@ -34,7 +34,7 @@ resource "helm_release" "kibana" {
   }
 
   set {
-    name  = "ingress.hosts.- host"
+    name  = "ingress.hosts[0].host"
     value = "kibana.hgest.ru"
   }
 
