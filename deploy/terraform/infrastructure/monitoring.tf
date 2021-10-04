@@ -6,11 +6,6 @@ resource "helm_release" "prometeus" {
   reuse_values = "true"
   atomic = "true"
 
-  #set {
-  #  name  = "sidecar.dashboards.enabled"
-  #  value = "true"
-  #}
-
 }
 
 resource "kubernetes_config_map" "config" {
@@ -23,5 +18,27 @@ resource "kubernetes_config_map" "config" {
   }
   data = {
     "k8s.json" = "${file("${path.module}/files/dashboards/k8s.json")}"
+  }
+}
+
+resource "kubernetes_ingress" "grafana_ingress" {
+  metadata {
+    name = "grafana-ingress"
+  }
+
+  spec {
+    rule {
+      host = grafana.hgest.ru
+      http {
+        path {
+          backend {
+            service_name = "kube-prometheus-stack-grafana"
+            service_port = 8080
+          }
+
+          path = "/"
+        }
+      }
+    }
   }
 }
