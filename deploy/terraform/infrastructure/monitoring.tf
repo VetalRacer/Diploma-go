@@ -29,7 +29,7 @@ resource "kubernetes_ingress" "grafana_ingress" {
 
   spec {
     rule {
-      host = grafana.hgest.ru
+      host = "grafana.hgest.ru"
       http {
         path {
           backend {
