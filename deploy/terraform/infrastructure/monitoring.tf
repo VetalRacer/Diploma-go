@@ -25,6 +25,21 @@ resource "kubernetes_ingress" "grafana_ingress" {
   metadata {
     namespace = "monitoring"
     name = "grafana-ingress"
+    annotations {
+      enable-vts-status: "true"
+      kubernetes.io/ingress.class: nginx
+      meta.helm.sh/release-name: app
+      meta.helm.sh/release-namespace: develop
+      nginx.ingress.kubernetes.io/configuration-snippet: |
+        more_set_headers "Server: ";
+      nginx.ingress.kubernetes.io/proxy-body-size: 15m
+      nginx.ingress.kubernetes.io/proxy-buffer-size: 16k
+      nginx.ingress.kubernetes.io/ssl-ciphers: ALL:!aNULL:!EXPORT56:RC4+RSA:+HIGH
+      nginx.org/proxy-hide-headers: Server, X-Powered-By, X-AspNet-Version, X-AspNet-Mvc-Version
+      nginx.org/server-tokens: "False"
+      prometheus.io/port: "10254"
+      prometheus.io/scrape: "true"
+    }
   }
 
   spec {
