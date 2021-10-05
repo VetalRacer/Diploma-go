@@ -17,9 +17,6 @@ image:
   imagePullSecret: artifactory
 
 resources:
-  limits:
-    cpu: 100m
-    memory: 300Mi
   requests:
     cpu: 50m
     memory: 200Mi
