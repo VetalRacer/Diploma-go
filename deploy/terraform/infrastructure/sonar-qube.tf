@@ -6,7 +6,7 @@ resource "kubernetes_namespace" "quality-gate" {
 
     name = "qgate"
   }
-}r
+}
 
 esource "helm_release" "sonarqube" {
   name       = "sonarqube"
