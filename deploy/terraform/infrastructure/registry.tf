@@ -4,4 +4,8 @@ resource "azurerm_container_registry" "default" {
   location            = azurerm_resource_group.default.location
   sku                 = "Standard"
   admin_enabled       = true
+
+  tags = {
+    environment = "Diploma"
+  }
 }

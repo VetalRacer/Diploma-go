@@ -17,6 +17,10 @@ resource "azurerm_postgresql_server" "default" {
   public_network_access_enabled    = true
   ssl_enforcement_enabled          = true
   ssl_minimal_tls_version_enforced = "TLS1_2"
+
+  tags = {
+    environment = "Diploma"
+  }
 }
 
 resource "azurerm_postgresql_database" "dev" {
