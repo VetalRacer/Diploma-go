@@ -23,9 +23,12 @@ stages:
         sonar-scanner \
           -Dsonar.projectKey=Diploma-go \
           -Dsonar.sources=. \
-          -Dsonar.host.url=http://20.50.49.188:9000 \
-          -Dsonar.login=0cac1b53bd68e2d758d0ddb429e84b539d70c210 \
+          -Dsonar.host.url=$sonar_host \
+          -Dsonar.login=$sonar_project_id \
           -Dsonar.qualitygate.wait=true
 
       name: 'Quality_Gates'
       displayName: 'Quality Gates'
+      env:
+        sonar_host: $(SONAR_HOST)
+        sonar_project_id: $(SONAR_PROJECT_ID)  

@@ -14,7 +14,6 @@ stages:
         
         cd deploy/terraform/deploy
         export TF_VAR_tag=$(echo $BUILD_BUILDNUMBER)
-        printenv   
         # Exit when any command returns a failure status.
         set -e
         # Write terraform.tfvars.
@@ -61,8 +60,7 @@ stages:
         # Cd to terraform folder.
         
         cd deploy/terraform/deploy
-        export TF_VAR_tag=$(echo $BUILD_BUILDNUMBER)
-        printenv   
+        export TF_VAR_tag=$(echo $BUILD_BUILDNUMBER) 
         # Exit when any command returns a failure status.
         set -e
         # Write terraform.tfvars.
