@@ -19,10 +19,10 @@ image:
 resources:
   limits:
     cpu: 100m
-    memory: 128Mi
+    memory: 900Mi
   requests:
     cpu: 60m
-    memory: 64Mi
+    memory: 600Mi
 
 ingress:
   enabled: true
