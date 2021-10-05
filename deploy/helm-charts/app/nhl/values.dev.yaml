@@ -18,10 +18,10 @@ image:
 
 resources:
   limits:
-    cpu: 600m
+    cpu: 900m
     memory: 900Mi
   requests:
-    cpu: 250m
+    cpu: 500m
     memory: 600Mi
 
 ingress:
