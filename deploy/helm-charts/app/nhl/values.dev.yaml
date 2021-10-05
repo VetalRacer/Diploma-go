@@ -18,11 +18,11 @@ image:
 
 resources:
   limits:
-    cpu: 900m
-    memory: 900Mi
+    cpu: 300m
+    memory: 500Mi
   requests:
-    cpu: 500m
-    memory: 600Mi
+    cpu: 200m
+    memory: 300Mi
 
 ingress:
   enabled: true
