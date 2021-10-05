@@ -77,16 +77,6 @@ resource "kubernetes_namespace" "dev-env" {
   }
 }
 
-resource "kubernetes_namespace" "qgate-env" {
-  metadata {
-    annotations = {
-      name = "qgate-env"
-    }
-
-    name = "qgate"
-  }
-}
-
 resource "kubernetes_secret" "dev-env" {
   metadata {
     name = "artifactory"
