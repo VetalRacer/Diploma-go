@@ -8,7 +8,7 @@ resource "kubernetes_namespace" "quality-gate" {
   }
 }
 
-esource "helm_release" "sonarqube" {
+resource "helm_release" "sonarqube" {
   name       = "sonarqube"
   repository = "https://oteemo.github.io/charts"
   chart      = "sonarqube"
