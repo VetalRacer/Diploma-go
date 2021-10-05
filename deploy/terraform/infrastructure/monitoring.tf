@@ -1,3 +1,13 @@
+resource "kubernetes_namespace" "monitoring" {
+  metadata {
+    annotations = {
+      name = "dev-monitoring"
+    }
+
+    name = "monitoring"
+  }
+}
+
 resource "helm_release" "prometeus" {
   name       = "kube-prometheus-stack"
   repository = "https://prometheus-community.github.io/helm-charts"

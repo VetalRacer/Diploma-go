@@ -1,3 +1,13 @@
+resource "kubernetes_namespace" "logging-env" {
+  metadata {
+    annotations = {
+      name = "logging-env"
+    }
+
+    name = "logging"
+  }
+}
+
 resource "helm_release" "elasticsearch" {
   name       = "elasticsearch"
   repository = "https://helm.elastic.co"

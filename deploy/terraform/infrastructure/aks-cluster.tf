@@ -71,26 +71,6 @@ resource "kubernetes_namespace" "dev-env" {
   }
 }
 
-resource "kubernetes_namespace" "logging-env" {
-  metadata {
-    annotations = {
-      name = "logging-env"
-    }
-
-    name = "logging"
-  }
-}
-
-resource "kubernetes_namespace" "monitoring" {
-  metadata {
-    annotations = {
-      name = "dev-monitoring"
-    }
-
-    name = "monitoring"
-  }
-}
-
 resource "kubernetes_namespace" "qgate-env" {
   metadata {
     annotations = {
@@ -100,18 +80,6 @@ resource "kubernetes_namespace" "qgate-env" {
     name = "qgate"
   }
 }
-
-resource "kubernetes_namespace" "nginx-ingress" {
-  metadata {
-    annotations = {
-      name = "nginx-ingress"
-    }
-
-    name = "nginx-ingress"
-  }
-}
-
-
 
 resource "kubernetes_secret" "dev-env" {
   metadata {
