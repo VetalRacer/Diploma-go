@@ -4,7 +4,7 @@ resource "kubernetes_namespace" "quality-gate" {
       name = "quality-gate"
     }
 
-    name = "qgate"
+    name = "quality-gate"
   }
 }
 
