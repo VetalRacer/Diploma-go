@@ -28,11 +28,11 @@ spec:
               protocol: TCP
           resources:
             requests:
-              memory: "64Mi"
-              cpu: "250m"
+              cpu: {{.Values.resources.requests.cpu}}
+              memory: {{.Values.resources.requests.memory}}
             limits:
-              memory: "128Mi"
-              cpu: "250m"
+              cpu: {{.Values.resources.limits.cpu}}
+              memory: {{.Values.resources.limits.memory}}
           envFrom:
           - configMapRef:
               name: {{ .Values.name }}-configmap
