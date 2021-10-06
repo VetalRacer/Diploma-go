@@ -13,6 +13,10 @@ resource "azurerm_public_ip" "default" {
   location            = azurerm_resource_group.default.location
   allocation_method   = "Static"
   sku                 = "Standard"
+
+  tags = {
+    environment = "Diploma"
+  }
 }
 
 resource "azurerm_kubernetes_cluster" "default" {
@@ -26,6 +30,8 @@ resource "azurerm_kubernetes_cluster" "default" {
     node_count      = 2
     vm_size         = "Standard_D2_v2"
     os_disk_size_gb = 30
+
+    
   }
 
   service_principal {
@@ -37,10 +43,6 @@ resource "azurerm_kubernetes_cluster" "default" {
     enabled = true
   }
 
-  tags = {
-    environment = "Diploma"
-  }
-
   network_profile {
     network_plugin    = "kubenet"
     load_balancer_sku = "Standard"
@@ -48,6 +50,10 @@ resource "azurerm_kubernetes_cluster" "default" {
       outbound_ip_address_ids = [ azurerm_public_ip.default.id ]
 
     }
+  }
+
+  tags = {
+    environment = "Diploma"
   }
 }
 
@@ -70,48 +76,6 @@ resource "kubernetes_namespace" "dev-env" {
     name = "develop"
   }
 }
-
-resource "kubernetes_namespace" "logging-env" {
-  metadata {
-    annotations = {
-      name = "logging-env"
-    }
-
-    name = "logging"
-  }
-}
-
-resource "kubernetes_namespace" "monitoring" {
-  metadata {
-    annotations = {
-      name = "dev-monitoring"
-    }
-
-    name = "monitoring"
-  }
-}
-
-resource "kubernetes_namespace" "qgate-env" {
-  metadata {
-    annotations = {
-      name = "qgate-env"
-    }
-
-    name = "qgate"
-  }
-}
-
-resource "kubernetes_namespace" "nginx-ingress" {
-  metadata {
-    annotations = {
-      name = "nginx-ingress"
-    }
-
-    name = "nginx-ingress"
-  }
-}
-
-
 
 resource "kubernetes_secret" "dev-env" {
   metadata {

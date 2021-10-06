@@ -23,6 +23,10 @@ resource "azurerm_key_vault" "default" {
       "recover"
     ]
   }
+
+  tags = {
+    environment = "Diploma"
+  }
 }
 
 resource "azurerm_key_vault_secret" "hostk8s" {

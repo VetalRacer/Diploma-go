@@ -1,3 +1,13 @@
+resource "kubernetes_namespace" "logging-env" {
+  metadata {
+    annotations = {
+      name = "logging-env"
+    }
+
+    name = "logging"
+  }
+}
+
 resource "helm_release" "elasticsearch" {
   name       = "elasticsearch"
   repository = "https://helm.elastic.co"
@@ -27,6 +37,26 @@ resource "helm_release" "kibana" {
   version = "7.14.0"
   reuse_values = "true"
   atomic = "true"
+
+  set {
+    name  = "ingress.enabled"
+    value = "true"
+  }
+
+  set {
+    name  = "ingress.annotations.kubernetes\\.io/ingress\\.class"
+    value = "nginx"
+  }
+
+  set {
+    name  = "ingress.hosts[0].host"
+    value = "kibana.hgest.ru"
+  }
+
+  set {
+    name  = "ingress.hosts[0].paths[0].path"
+    value = "/"
+  }
 }
 
 resource "helm_release" "logstash" {
