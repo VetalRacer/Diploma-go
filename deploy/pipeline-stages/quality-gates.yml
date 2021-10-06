@@ -1,6 +1,6 @@
 stages:
-- stage: 'SonarQube'
-  displayName: 'SonarQube'
+- stage: 'Quality_Gates'
+  displayName: 'Quality Gates'
   condition: succeeded()
   jobs:
   - job: Test_Code
@@ -27,8 +27,8 @@ stages:
           -Dsonar.login=$sonar_project_id \
           -Dsonar.qualitygate.wait=true
 
-      name: 'Quality_Gates'
-      displayName: 'Quality Gates'
+      name: 'SonarQube'
+      displayName: 'Sonar_Qube'
       env:
         sonar_host: $(SONAR_HOST)
         sonar_project_id: $(SONAR_PROJECT_ID)  
