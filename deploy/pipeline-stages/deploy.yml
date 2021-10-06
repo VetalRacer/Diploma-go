@@ -37,6 +37,7 @@ stages:
         TF_VAR_namespace: develop
 
   - job: waitForValidation
+    condition: and(contains(variables['build.sourceBranch'], 'refs/heads/release', 'refs/heads/infrastructure'), succeeded())
     displayName: "Wait > Wait for manual appoval"
     dependsOn: Deploy_to_Dev
     pool: "server"
@@ -51,6 +52,7 @@ stages:
           onTimeout: "reject"
 
   - job:  Deploy_to_Prod
+    condition: and(contains(variables['build.sourceBranch'], 'refs/heads/release', 'refs/heads/infrastructure'), succeeded())
     displayName: 'Deploy to Prod'
     dependsOn: waitForValidation
     pool:
