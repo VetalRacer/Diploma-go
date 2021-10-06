@@ -42,7 +42,7 @@ resource "kubernetes_ingress" "sonar_ingress" {
         path {
           backend {
             service_name = "sonarqube-sonarqube"
-            service_port = 80
+            service_port = 9000
           }
 
           path = "/"
