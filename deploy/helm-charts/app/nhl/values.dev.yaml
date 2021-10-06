@@ -18,8 +18,8 @@ image:
 
 resources:
   requests:
-    cpu: 100m
-    memory: 300Mi
+    cpu: 50m
+    memory: 170Mi
 
 ingress:
   enabled: true
