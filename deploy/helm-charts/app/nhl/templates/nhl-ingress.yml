@@ -1,3 +1,4 @@
+
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := .Values.name -}}
 {{- $svcPort := .Values.port -}}
@@ -19,11 +20,15 @@ spec:
     {{- toYaml . | nindent 8 }}
 {{- end }}
   rules:
-    - host: {{ .Values.ingress.hosts.host }}
+  {{- range .Values.ingress.hosts }}
+    - host: {{ .host | quote }}.{{ .Values.domain }}
       http:
         paths:
-          - path: {{ .Values.ingress.hosts.paths.path }}
+        {{- range .paths }}
+          - path: {{ . }}
             backend:
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort }}
+        {{- end }}
+  {{- end }}
 {{- end }}

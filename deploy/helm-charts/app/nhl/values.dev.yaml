@@ -37,6 +37,10 @@ ingress:
     prometheus.io/port: "10254"
     prometheus.io/scrape: "true"   
   hosts:
-    host: nhl-dev.test.com
-    paths:
-      path: "/"
+    - host: nhl-dev
+      paths:
+        path: "/"
+  #tls:
+  #  - hosts:
+  #      - nhl-dev
+  #    secretName: tls-secret
