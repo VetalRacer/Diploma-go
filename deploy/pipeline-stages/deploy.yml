@@ -12,6 +12,7 @@ stages:
     - script: |
         # Cd to terraform folder.
         
+        printenv
         cd deploy/terraform/deploy
         export TF_VAR_tag=$(echo $BUILD_BUILDNUMBER)
         # Exit when any command returns a failure status.
@@ -62,6 +63,7 @@ stages:
     - script: |
         # Cd to terraform folder.
         
+        printenv
         cd deploy/terraform/deploy
         export TF_VAR_tag=$(echo $BUILD_BUILDNUMBER) 
         # Exit when any command returns a failure status.
