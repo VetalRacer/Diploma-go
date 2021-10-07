@@ -1,6 +1,5 @@
 
 {{- if .Values.ingress.enabled -}}
-{{- $domain := .Values.domain -}}
 {{- $fullName := .Values.name -}}
 {{- $svcPort := .Values.port -}}
 apiVersion: networking.k8s.io/v1beta1
