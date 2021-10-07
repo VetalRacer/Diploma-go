@@ -39,10 +39,10 @@ resource "helm_release" "app" {
     value = "${base64encode("${var.db_pass}")}"
   }
 
-  #set {
-  #  name  = "domain"
-  #  value = var.domain
-  #}
+  set {
+    name  = "domain"
+    value = var.domain
+  }
 
   set {
     name  = "tag"
@@ -53,12 +53,6 @@ resource "helm_release" "app" {
     name = "repository"
     value = var.registry_url
   }
-
-  set {
-    name  = "ingress.hosts.host"
-    value = "var.domain"
-  }
-
 
 }
 
