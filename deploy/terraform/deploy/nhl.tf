@@ -56,7 +56,7 @@ resource "helm_release" "app" {
 
   set {
     name  = "ingress.hosts.host"
-    value = var.domain"
+    value = "var.domain"
   }
 
 
