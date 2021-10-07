@@ -40,6 +40,11 @@ resource "helm_release" "app" {
   }
 
   set {
+    name  = "domain"
+    value = var.domain
+  }
+
+  set {
     name  = "tag"
     value = var.tag
   }
@@ -78,6 +83,7 @@ variable "db_pass" {
   type        = string
 }
 
+variable "domain" {}
 variable "tag" {}
 variable "namespace" {}
 variable "values_name" {}

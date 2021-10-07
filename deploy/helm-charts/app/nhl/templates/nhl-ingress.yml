@@ -1,3 +1,4 @@
+
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := .Values.name -}}
 {{- $svcPort := .Values.port -}}
@@ -20,7 +21,7 @@ spec:
 {{- end }}
   rules:
   {{- range .Values.ingress.hosts }}
-    - host: {{ .host | quote }}
+    - host: {{ .host }}.{{ $.Values.domain }}
       http:
         paths:
         {{- range .paths }}
