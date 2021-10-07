@@ -1,19 +1,11 @@
 trigger:
-<<<<<<< HEAD
   - release
-=======
-  - infrastructure
 
->>>>>>> infrastructure
 
 variables:
 - template: deploy/pipeline-stages/vars.yml
 
 stages:
-<<<<<<< HEAD
 - template: deploy/pipeline-stages/quality-gates.yml
-=======
-- template: deploy/pipeline-stages/infrastructure_deploy.yml
->>>>>>> infrastructure
 - template: deploy/pipeline-stages/build.yml
 - template: deploy/pipeline-stages/deploy.yml
