@@ -87,4 +87,4 @@ stages:
         TF_VAR_domain: $(domain)
         TF_VAR_values_name: values.prod
         TF_VAR_namespace: production
-        TF_subscription_id: $(ARM_SUBSCRIPTION_ID)
+        TF_VAR_subscription_id: $(ARM_SUBSCRIPTION_ID)
