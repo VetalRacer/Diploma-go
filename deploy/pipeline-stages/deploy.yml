@@ -36,7 +36,7 @@ stages:
         TF_VAR_domain: $(domain)
         TF_VAR_values_name: values.dev
         TF_VAR_namespace: develop
-        TF_subscription_id: $(ARM_SUBSCRIPTION_ID)
+        TF_VAR_subscription_id: $(ARM_SUBSCRIPTION_ID)
 
   - job: waitForValidation
     condition: and(in(variables['build.sourceBranch'], 'refs/heads/release', 'refs/heads/infrastructure'), succeeded())
