@@ -27,6 +27,11 @@ stages:
         terraform apply -input=false -auto-approve
 
       condition: and(succeeded(), eq(variables.commitMessage, 'firstdeploy'))
+      name: 'RunTerraform'
+      displayName: 'Run Terraform'
+      env:
+        TF_VAR_arm_client_id: $(ARM_CLIENT_ID)
+        TF_VAR_arm_client_secret: $(ARM_CLIENT_SECRET)
 
   - job: Deploy_Infrastucture
     dependsOn: Prepare_Infrastructure
