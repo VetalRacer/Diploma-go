@@ -1,9 +1,5 @@
 trigger:
-<<<<<<< HEAD
   - release
-=======
-  - develop
->>>>>>> develop
 
 
 variables:
