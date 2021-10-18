@@ -15,7 +15,7 @@ func Connect() {
 		log.Fatalf("Unable to connection to database: %v", err)
 	}
 	defer pool.Close()
-	log.Printf("Connected!")
+	log.Printf("[INFO] Connected to database!")
 
 	conn, err := pool.Acquire(context.Background())
 	if err != nil {
@@ -47,5 +47,5 @@ func migrateDatabase(conn *pgx.Conn) {
 		log.Fatalf("Unable to get current schema version: %v", err)
 	}
 
-	log.Printf("Migration done. Current schema version: %v", ver)
+	log.Printf("[INFO] Migration done. Current schema version: %v", ver)
 }
