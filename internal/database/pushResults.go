@@ -18,7 +18,7 @@ func AddPlayers(players map[int]jsonconvert.Player) bool {
 		log.Fatalf("Unable to connection to database: %v", err)
 	}
 	defer pool.Close()
-	log.Printf("Connected!")
+	//log.Printf("Connected!")
 
 	conn, err := pool.Acquire(context.Background())
 	if err != nil {

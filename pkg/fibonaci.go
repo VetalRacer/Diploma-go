@@ -1,12 +1,16 @@
 package pkg
 
-import "math/big"
+import (
+	"log"
+	"math/big"
+)
 
 func Stress() string {
+	log.Printf("[INFO] Start stress test...")
 	for i := 1; i < 200; i++ {
 		go factorial(big.NewInt(20000))
 	}
-	return "done"
+	return "Done"
 }
 
 func factorial(x *big.Int) *big.Int {
