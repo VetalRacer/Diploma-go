@@ -41,6 +41,8 @@ func GetPlayer() {
 			getPlayers(psJson, s, &PlayerFinalGame)
 		}
 
+		log.Printf("[INFO] Season %s, AllStar Games: %v, Final Game: %v", s, SeasonAllStar, SeasonGame)
+
 		//Check people who take part in all-stars-game and the final game
 		err = checkPlayer(PlayerFinalGame, PlayerAllStar)
 		if err != nil {
@@ -59,6 +61,7 @@ func getSeasonID(sg jsonconvert.Seasons) []string {
 	for i := last3seasonId; i <= len(sg.Seasons)-1; i++ {
 		sd = append(sd, sg.Seasons[i].SeasonID)
 	}
+	log.Printf("[INFO] Seasons: %s", sd)
 	return sd
 }
 

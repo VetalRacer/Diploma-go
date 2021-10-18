@@ -6,6 +6,7 @@ import (
 	"Diploma-go/pkg"
 	"fmt"
 	"html/template"
+	"log"
 	"net/http"
 	"strconv"
 )
@@ -35,6 +36,7 @@ func indexPage(w http.ResponseWriter, r *http.Request) {
 	if id != "" {
 		if playerId, err := strconv.Atoi(id); err == nil {
 			showPlayerTrue(playerId)
+			log.Printf("[INFO] Show PlayerId: %d", playerId)
 		}
 	}
 
@@ -42,6 +44,7 @@ func indexPage(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 	}
+
 	err = tmpl.Execute(w, displayPlayers)
 	if err != nil {
 		return
@@ -54,6 +57,8 @@ func updateDb(w http.ResponseWriter, r *http.Request) {
 	backend.GetPlayer()
 	displayPlayers = database.GetPlayers()
 	http.Redirect(w, r, "/", http.StatusSeeOther)
+
+	log.Printf("[INFO] Database success updated!")
 }
 
 func stressTest(w http.ResponseWriter, r *http.Request) {
