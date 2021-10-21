@@ -6,6 +6,7 @@ daemonset:
       - type: container
         paths:
           - /var/log/containers/nhl*.log
+          - /var/log/containers/ingress-nginx-controller*.log
         processors:
         - add_kubernetes_metadata:
             host: ${NODE_NAME}
