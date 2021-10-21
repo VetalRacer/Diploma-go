@@ -38,6 +38,8 @@ func indexPage(w http.ResponseWriter, r *http.Request) {
 			showPlayerTrue(playerId)
 			log.Printf("[INFO] Show PlayerId: %d", playerId)
 		}
+	} else {
+		showPlayerTrue(0)
 	}
 
 	tmpl, err := template.ParseFiles("templates/index.html")
