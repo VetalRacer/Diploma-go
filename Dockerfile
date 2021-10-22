@@ -11,7 +11,7 @@ FROM alpine
 WORKDIR /app
 COPY migrations /app/migrations/
 COPY templates /app/templates/
-COPY raw/Diploma.go /app/raw/Diploma.go
+COPY raw/Diploma-go.pdf /app/raw/Diploma-go.pdf
 COPY --from=builder /app/main /app/
 #ENV DB_HOST=""
 #ENV DB_LOGIN=""
