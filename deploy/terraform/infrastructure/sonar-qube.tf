@@ -16,6 +16,11 @@ resource "helm_release" "sonarqube" {
   version = "9.6.6"
   reuse_values = "true"
   atomic = "true"
+
+  depends_on = [
+    kubernetes_namespace.quality-gate
+  ]
+
 }
 
 resource "kubernetes_ingress" "sonar_ingress" {
@@ -50,4 +55,9 @@ resource "kubernetes_ingress" "sonar_ingress" {
       }
     }
   }
+
+  depends_on = [
+    kubernetes_namespace.quality-gate
+  ]
+  
 }

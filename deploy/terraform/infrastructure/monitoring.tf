@@ -16,6 +16,10 @@ resource "helm_release" "prometeus" {
   reuse_values = "true"
   atomic = "true"
 
+  depends_on = [
+    kubernetes_namespace.monitoring
+  ]
+
 }
 
 resource "kubernetes_config_map" "config" {
@@ -29,6 +33,11 @@ resource "kubernetes_config_map" "config" {
   data = {
     "k8s.json" = "${file("${path.module}/files/dashboards/k8s.json")}"
   }
+
+  depends_on = [
+    kubernetes_namespace.monitoring
+  ]
+
 }
 
 resource "kubernetes_ingress" "grafana_ingress" {
@@ -63,4 +72,9 @@ resource "kubernetes_ingress" "grafana_ingress" {
       }
     }
   }
+
+  depends_on = [
+    kubernetes_namespace.monitoring
+  ]
+  
 }
