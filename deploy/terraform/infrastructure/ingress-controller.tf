@@ -21,9 +21,13 @@ resource "helm_release" "ingress-controller" {
     value = azurerm_public_ip.default.ip_address
   }
 
- set {
+  set {
     name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/azure-load-balancer-resource-group"
     value = "Diploma-rg"
   }
+
+  depends_on = [
+    kubernetes_namespace.nginx-ingress
+  ]
 
 }

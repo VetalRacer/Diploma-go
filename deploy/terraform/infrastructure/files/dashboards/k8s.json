@@ -1673,7 +1673,9 @@
   "refresh": "10s",
   "schemaVersion": 30,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "demo-dashboard"
+  ],
   "templating": {
     "list": [
       {

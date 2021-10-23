@@ -37,10 +37,10 @@ ingress:
     prometheus.io/port: "10254"
     prometheus.io/scrape: "true"   
   hosts:
-    - host: nhl.hgest.ru
+    - host: nhl
       paths:
         path: "/"
   #tls:
   #  - hosts:
-  #      - nhl.hgest.ru
+  #      - nhl
   #    secretName: tls-secret

@@ -32,3 +32,12 @@ Please note, if it is first deploy infrastructure then use commit as 'firstdeplo
 #### Destroy all
 - Run pipline for destroy_all brunche
 - Delete manual resource group with StorageAccountName name
+
+## Description Project
+
+#### Architecture
+![Иллюстрация к проекту](https://github.com/VetalRacer/Diploma-go/raw/main/raw/Architecture.png)
+#### Piplines
+![Иллюстрация к проекту](https://github.com/VetalRacer/Diploma-go/raw/main/raw/Piplines.png)
+#### Application logic
+![Иллюстрация к проекту](https://github.com/VetalRacer/Diploma-go/raw/main/raw/Application_logic.png)

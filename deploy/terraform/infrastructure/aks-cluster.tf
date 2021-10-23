@@ -94,6 +94,10 @@ resource "kubernetes_secret" "dev-env" {
 }
 DOCKER
   }
-
   type = "kubernetes.io/dockerconfigjson"
+
+  depends_on = [
+    kubernetes_namespace.dev-env
+  ]
+
 }

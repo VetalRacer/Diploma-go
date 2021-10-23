@@ -25,7 +25,6 @@ stages:
         terraform init -input=false
         # Apply the Terraform plan.
         terraform apply -input=false -auto-approve
-
       condition: and(succeeded(), eq(variables.commitMessage, 'firstdeploy'))
 
   - job: Deploy_Infrastucture

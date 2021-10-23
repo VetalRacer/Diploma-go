@@ -27,6 +27,10 @@ resource "helm_release" "elasticsearch" {
     value = "1"
   }
 
+  depends_on = [
+    kubernetes_namespace.logging-env
+  ]
+
 }
 
 resource "helm_release" "kibana" {
@@ -57,6 +61,11 @@ resource "helm_release" "kibana" {
     name  = "ingress.hosts[0].paths[0].path"
     value = "/"
   }
+
+  depends_on = [
+    kubernetes_namespace.logging-env
+  ]
+
 }
 
 resource "helm_release" "logstash" {
@@ -67,6 +76,11 @@ resource "helm_release" "logstash" {
   version = "7.14.0"
   reuse_values = "true"
   atomic = "true"
+
+  depends_on = [
+    kubernetes_namespace.logging-env
+  ]
+
 }
 
 resource "helm_release" "filebeat" {
@@ -78,4 +92,9 @@ resource "helm_release" "filebeat" {
   version = "7.14.0"
   reuse_values = "true"
   atomic = "true"
+
+  depends_on = [
+    kubernetes_namespace.logging-env
+  ]
+  
 }
