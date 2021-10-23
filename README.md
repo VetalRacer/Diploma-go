@@ -35,9 +35,9 @@ Please note, if it is first deploy infrastructure then use commit as 'firstdeplo
 
 ## Description Project
 
-#### Architecture
+### Architecture
 ![Иллюстрация к проекту](https://github.com/VetalRacer/Diploma-go/raw/main/raw/Architecture.png)
-#### Piplines
+### Piplines
 ![Иллюстрация к проекту](https://github.com/VetalRacer/Diploma-go/raw/main/raw/Piplines.png)
-#### Application logic
+### Application logic
 ![Иллюстрация к проекту](https://github.com/VetalRacer/Diploma-go/raw/main/raw/Application_logic.png)
