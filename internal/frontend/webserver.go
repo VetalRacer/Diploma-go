@@ -23,6 +23,7 @@ func HandleRequest() {
 
 	http.HandleFunc("/", indexPage)
 	http.HandleFunc("/update/", updateDb)
+	http.HandleFunc("/presentation/", downloadPresentation)
 	http.HandleFunc("/stresstest/", stressTest)
 	err := http.ListenAndServe(":80", nil)
 	if err != nil {
@@ -38,6 +39,8 @@ func indexPage(w http.ResponseWriter, r *http.Request) {
 			showPlayerTrue(playerId)
 			log.Printf("[INFO] Show PlayerId: %d", playerId)
 		}
+	} else {
+		showPlayerTrue(0)
 	}
 
 	tmpl, err := template.ParseFiles("templates/index.html")
@@ -59,6 +62,17 @@ func updateDb(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 
 	log.Printf("[INFO] Database success updated!")
+}
+
+func downloadPresentation(w http.ResponseWriter, r *http.Request) {
+
+	filename := "Diploma-go.pdf"
+	filePath := "raw/Diploma-go.pdf"
+
+	w.Header().Set("Content-Disposition", "attachment; filename="+strconv.Quote(filename))
+	w.Header().Set("Content-Type", "application/pdf")
+	w.Header().Set("Content-Length", r.Header.Get("Content-Length"))
+	http.ServeFile(w, r, filePath)
 }
 
 func stressTest(w http.ResponseWriter, r *http.Request) {
