@@ -1,3 +1,3 @@
 package configs
 
-var SetSeason = 8
+var SetSeason = 4
