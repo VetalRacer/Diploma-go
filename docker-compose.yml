@@ -8,6 +8,9 @@ services:
       - 80:80
     environment:
       - DB_HOST=db
+      - DB_LOGIN=nhl
+      - DB_DB_NAME=nhl 
+      - DB_PASS=s3cr3t
     depends_on:
       - db
 
@@ -16,6 +19,7 @@ services:
     image: postgres:latest
     environment:
       - POSTGRES_DB=nhl
-      - POSTGRES_PASSWORD=s3cr3t      
+      - POSTGRES_USER=nhl
+      - POSTGRES_PASSWORD=s3cr3t    
     ports:
       - 5432:5432
